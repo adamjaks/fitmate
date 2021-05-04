@@ -1,0 +1,14 @@
+@import "../../../scss/global";
+
+.ButtonControl {
+  width: 100%;
+  margin-top: $DEFAULT_MARGIN_M;
+  padding: $DEFAULT_PADDING_S;
+  border: 0;
+  font-size: $DEFAULT_FONT_SIZE_M;
+  font-weight: 700;
+  background: $COLOR_PRIMARY;
+  color: $COLOR_WHITE;
+  outline: 0;
+  box-shadow: none;
+}

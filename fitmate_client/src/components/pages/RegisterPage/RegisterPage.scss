@@ -1,0 +1,36 @@
+@import '../../../scss/global';
+
+.RegisterPage {
+  background: $COLOR_WHITE;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    width: 90%;
+  }
+
+  &__header {
+    text-align: center;
+
+    h2 {
+      font: {
+        weight: 700;
+        size: $DEFAULT_FONT_SIZE_XL;
+      }
+      margin: 0;
+    }
+
+    h3 {
+      font: {
+        size: $DEFAULT_FONT_SIZE_M;
+      }
+      margin: 0;
+    }
+  }
+
+  &__form {
+    margin-top: $DEFAULT_MARGIN_L;
+  }
+}

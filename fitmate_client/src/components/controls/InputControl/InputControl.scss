@@ -1,0 +1,15 @@
+@import "../../../scss/global";
+
+.InputControl {
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    background: $COLOR_WHITE;
+    color: #c9c9c9;
+    padding: $DEFAULT_MARGIN_M;
+    font-size: $DEFAULT_FONT_SIZE_M;
+    border: 1px solid #c9c9c9;
+    margin-top: $DEFAULT_MARGIN_S;
+  }
+}

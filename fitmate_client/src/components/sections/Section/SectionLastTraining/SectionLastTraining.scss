@@ -1,0 +1,26 @@
+@import "../../../../scss/global";
+
+.SectionLastTraining {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__param {
+    box-sizing: border-box;
+    width: 50%;
+    padding-right: $DEFAULT_PADDING_S;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: $DEFAULT_MARGIN_XS 0;
+
+    &--localization {
+      width: 100%;
+      margin-bottom: $DEFAULT_MARGIN_S;
+    }
+  }
+
+  &__param-label {
+    margin-left: $DEFAULT_MARGIN_S;
+  }
+}

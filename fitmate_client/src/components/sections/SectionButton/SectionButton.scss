@@ -1,0 +1,17 @@
+@import "../../../scss/global";
+
+.SectionButton {
+  padding: $DEFAULT_PADDING_S;
+  background: $COLOR_WHITE;
+  box-shadow: $DEFAULT_SHADOW_M;
+  border-radius: $DEFAULT_BORDER_RADIUS_M;
+  margin: $DEFAULT_MARGIN_S 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: 700;
+    color: $COLOR_FONT_PRIMARY;
+  }
+}

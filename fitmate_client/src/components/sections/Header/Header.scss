@@ -1,0 +1,17 @@
+@import "../../../scss/global";
+
+.Header {
+  &__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $DEFAULT_PADDING_S;
+    box-shadow: $DEFAULT_SHADOW_M;
+  }
+
+  &__logo {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+}
