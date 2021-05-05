@@ -7,6 +7,8 @@
     align-items: center;
     padding: $DEFAULT_PADDING_S;
     box-shadow: $DEFAULT_SHADOW_M;
+    background: $COLOR_PRIMARY;
+    color: $COLOR_WHITE;
   }
 
   &__logo {

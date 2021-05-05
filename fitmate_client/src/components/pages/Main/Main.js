@@ -8,26 +8,57 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUserAction } from "../../../store/actions/authActions";
 
+const SECTION_BUTTONS = {
+    CALENDAR: "calendar",
+    PROGRESS: "progress",
+    TRAININGS: "trainings",
+}
+
 class Main extends React.Component {
 
-    onLogoutClick = e => {
+    constructor(props) {
+        super(props);
+
+        this._onSectionClickBind = this._onSectionClick.bind(this);
+        this._onLogoutClickBind = this._onLogoutClick.bind(this);
+    }
+
+    _onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUserAction();
     };
+
+    _onSectionClick(evt) {
+        switch (evt.props.id) {
+            case SECTION_BUTTONS.CALENDAR: this.props.history.push("/calendar"); break;
+            case SECTION_BUTTONS.PROGRESS: this.props.history.push("/progress"); break;
+            case SECTION_BUTTONS.TRAININGS: this.props.history.push("/trainings"); break;
+            default: this.props.history.push("/");
+        }
+    }
 
     render() {
         // const { user } = this.props.auth;
 
         return (
             <div className="Main">
-                <Header></Header>
+                <Header/>
                 <Section title={"Mój ostatni trening"}>
                     <SectionLastTraining/>
                 </Section>
-                <SectionButton title={"Kalendarz"}/>
-                <SectionButton title={"Moje postępy"}/>
-                <SectionButton title={"Moje treningi"}/>
-                <button onClick={this.onLogoutClick.bind(this)}>Wyloguj</button>
+                <SectionButton id={SECTION_BUTTONS.CALENDAR}
+                               title={"Kalendarz"}
+                               brief={"Ostatni trening: 23/04/2021"}
+                               onClick={this._onSectionClickBind}/>
+                <SectionButton id={SECTION_BUTTONS.PROGRESS}
+                               title={"Moje postępy"}
+                               brief={"75kg, wzrost wagi: 11%"}
+                               onClick={this._onSectionClickBind}/>
+                <SectionButton id={SECTION_BUTTONS.TRAININGS}
+                               title={"Moje treningi"}
+                               brief={"Trening A,Trening B, FBW"}
+                               onClick={this._onSectionClickBind}/>
+                <button onClick={this._onLogoutClickBind}>Wyloguj</button>
             </div>
         )
     }

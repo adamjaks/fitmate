@@ -10,6 +10,9 @@ import './index.scss';
 import LoginPage from "./components/pages/LoginPage/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage/RegisterPage";
 import Main from "./components/pages/Main/Main";
+import CalendarPage from "./components/pages/CalendarPage/CalendarPage";
+import ProgressPage from "./components/pages/ProgressPage/ProgressPage";
+import TrainingsPage from "./components/pages/TrainingsPage/TrainingsPage";
 import PrivateRoute from "./components/sections/utils/PrivateRoute/PrivateRoute";
 import setAuthToken from "./components/utils/setAuthToken";
 
@@ -39,6 +42,9 @@ ReactDOM.render(
                 <div className="App">
                     <Route exact path="/login" component={LoginPage}/>
                     <Route exact path="/register" component={RegisterPage}/>
+                    <Route exact path="/calendar" component={CalendarPage}/>
+                    <Route exact path="/progress" component={ProgressPage}/>
+                    <Route exact path="/trainings" component={TrainingsPage}/>
                     <Switch>
                         <PrivateRoute exact path="/" component={Main} />
                     </Switch>

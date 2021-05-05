@@ -10,8 +10,32 @@
   justify-content: space-between;
   align-items: center;
 
+  &__icon {
+    text-align: left;
+    font-size: $DEFAULT_FONT_SIZE_XL;
+    width: 15%;
+    color: $COLOR_FONT_PRIMARY;
+  }
+
+  &__label-wrapper {
+    width: 75%;
+    text-align: left;
+  }
+
   &__title {
     font-weight: 700;
     color: $COLOR_FONT_PRIMARY;
+    text-transform: uppercase;
+  }
+
+  &__brief {
+    color: $COLOR_FONT_PRIMARY;
+    font-size: $DEFAULT_FONT_SIZE_S;
+  }
+
+  &__action-button {
+    text-align: right;
+    color: $COLOR_PRIMARY;
+    width: 10%;
   }
 }

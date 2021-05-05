@@ -9,8 +9,8 @@ import classnames from "classnames";
 import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: "",
             password: "",
@@ -87,8 +87,6 @@ class LoginPage extends React.Component {
         </div>
     }
 }
-
-LoginPage.propTypes = {};
 
 LoginPage.defaultProps = {};
 
