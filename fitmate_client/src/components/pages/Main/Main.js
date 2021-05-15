@@ -11,6 +11,7 @@ import { logoutUserAction } from "../../../store/actions/authActions";
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
     PROGRESS: "progress",
+    EXERCISES: "exercises",
     TRAININGS: "trainings",
 }
 
@@ -32,6 +33,7 @@ class Main extends React.Component {
         switch (evt.props.id) {
             case SECTION_BUTTONS.CALENDAR: this.props.history.push("/calendar"); break;
             case SECTION_BUTTONS.PROGRESS: this.props.history.push("/progress"); break;
+            case SECTION_BUTTONS.EXERCISES: this.props.history.push("/exercises"); break;
             case SECTION_BUTTONS.TRAININGS: this.props.history.push("/trainings"); break;
             default: this.props.history.push("/");
         }
@@ -49,14 +51,22 @@ class Main extends React.Component {
                 <SectionButton id={SECTION_BUTTONS.CALENDAR}
                                title={"Kalendarz"}
                                brief={"Ostatni trening: 23/04/2021"}
+                               icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.PROGRESS}
                                title={"Moje postępy"}
                                brief={"75kg, wzrost wagi: 11%"}
+                               icon={SECTION_BUTTONS.PROGRESS}
+                               onClick={this._onSectionClickBind}/>
+                <SectionButton id={SECTION_BUTTONS.EXERCISES}
+                               title={"Baza ćwiczeń"}
+                               brief={"Ostatnio dodane: wykroki"}
+                               icon={SECTION_BUTTONS.EXERCISES}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
                                title={"Moje treningi"}
                                brief={"Trening A,Trening B, FBW"}
+                               icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
                 <button onClick={this._onLogoutClickBind}>Wyloguj</button>
             </div>

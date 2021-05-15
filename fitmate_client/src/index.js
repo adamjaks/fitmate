@@ -13,6 +13,9 @@ import Main from "./components/pages/Main/Main";
 import CalendarPage from "./components/pages/CalendarPage/CalendarPage";
 import ProgressPage from "./components/pages/ProgressPage/ProgressPage";
 import TrainingsPage from "./components/pages/TrainingsPage/TrainingsPage";
+import ExercisesPage from "./components/pages/ExercisesPage/ExercisesPage";
+import AddTrainingPage from "./components/pages/AddTrainingPage/AddTrainingPage"
+import AddExercisePage from "./components/pages/AddExercisePage/AddExercisePage"
 import PrivateRoute from "./components/sections/utils/PrivateRoute/PrivateRoute";
 import setAuthToken from "./components/utils/setAuthToken";
 
@@ -44,7 +47,10 @@ ReactDOM.render(
                     <Route exact path="/register" component={RegisterPage}/>
                     <Route exact path="/calendar" component={CalendarPage}/>
                     <Route exact path="/progress" component={ProgressPage}/>
+                    <Route exact path="/exercises" component={ExercisesPage}/>
+                    <Route exact path="/exercises/add" component={AddExercisePage}/>
                     <Route exact path="/trainings" component={TrainingsPage}/>
+                    <Route exact path="/trainings/add" component={AddTrainingPage}/>
                     <Switch>
                         <PrivateRoute exact path="/" component={Main} />
                     </Switch>

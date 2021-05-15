@@ -1,21 +1,56 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './TrainingsPage.scss';
 import Section from "../../sections/Section/Section";
+import SectionButton from "../../sections/SectionButton/SectionButton";
 import Header from "../../sections/Header/Header";
+import ButtonControl from "../../controls/ButtonControl/ButtonControl";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
-const TrainingsPage = () => (
-  <div className="TrainingsPage">
-      <Header/>
-      <Section title={"Moje treningi"}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Section>
-  </div>
-);
+const GET_TRAININGS_ROUTE = "/api/trainings";
+
+class TrainingsPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            trainings: []
+        }
+    }
+
+    componentDidMount() {
+        this._fetchTrainings();
+    }
+
+    render() {
+        return (
+            <div className="TrainingsPage">
+                <Header/>
+                <Section title={"Moje treningi"}/>
+                {
+                    this.state.trainings.map((training, index) => {
+                        return <SectionButton title={training.name}
+                                          brief={training.exercisesIds?.join(", ")}
+                                          key={index}
+                                          icon={"trainings"}/>
+                    })
+                }
+                <Link to={"/trainings/add"}>
+                    <ButtonControl value={"Dodaj trening"}/>
+                </Link>
+
+            </div>
+        )
+    }
+
+    _fetchTrainings() {
+        axios.get(GET_TRAININGS_ROUTE).then(res => {
+            this.setState(({trainings: res.data}))
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+}
 
 TrainingsPage.propTypes = {};
 
