@@ -1,13 +1,19 @@
 @import "./scss/global";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 @font-face {
   font-family: Lato;
   src: url("assets/font/Lato-Regular.ttf");
 }
 
+@font-face {
+  font-family: Nunito;
+  src: url("assets/font/Nunito-Regular.ttf");
+}
+
 body {
   margin: 0;
-  padding: $DEFAULT_PADDING_S;
+  padding: $HEADER_SIZE + $DEFAULT_PADDING_S $DEFAULT_PADDING_S $DEFAULT_PADDING_S $DEFAULT_PADDING_S;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: $DEFAULT_FONT_SIZE_M;
@@ -15,10 +21,30 @@ body {
 }
 
 body, body * {
-  font-family: Lato, sans-serif;
+  font-family: Nunito, sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.title {
+  font-size: $DEFAULT_FONT_SIZE_M;
+  color: var(--color-primary-800);
+}
+
+.subtitle {
+  font-size: $DEFAULT_FONT_SIZE_S;
+  color: var(--color-primary-700);
+}
+
+.form {
+  &__section {
+    margin: $DEFAULT_MARGIN_S 0;
+  };
 }

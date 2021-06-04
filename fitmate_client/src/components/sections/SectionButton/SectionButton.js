@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
 import { FaAngleRight } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
@@ -12,10 +11,6 @@ import './SectionButton.scss';
 class SectionButton extends React.Component {
 
     _icon = null;
-
-    constructor(props) {
-        super(props);
-    }
 
     _getIcon() {
         switch(this.props.icon) {
@@ -47,10 +42,6 @@ class SectionButton extends React.Component {
         )
     }
 }
-
-// SectionButton.propTypes = {
-//     onPress: PropTypes.func.isRequired
-// };
 
 SectionButton.defaultProps = {};
 

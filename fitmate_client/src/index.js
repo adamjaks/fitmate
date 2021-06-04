@@ -16,11 +16,15 @@ import TrainingsPage from "./components/pages/TrainingsPage/TrainingsPage";
 import ExercisesPage from "./components/pages/ExercisesPage/ExercisesPage";
 import AddTrainingPage from "./components/pages/AddTrainingPage/AddTrainingPage"
 import AddExercisePage from "./components/pages/AddExercisePage/AddExercisePage"
+import TrainingDetailsPage from "./components/pages/TrainingDetailsPage/TrainingDetailsPage"
+import ExerciseDetailsPage from "./components/pages/ExerciseDetailsPage/ExerciseDetailsPage"
+import TrackerConfigPage from "./components/pages/TrackerConfigPage/TrackerConfigPage"
 import PrivateRoute from "./components/sections/utils/PrivateRoute/PrivateRoute";
 import setAuthToken from "./components/utils/setAuthToken";
 
 import store from "./store/store";
 import { setCurrentUserAction, logoutUserAction } from "./store/actions/authActions";
+import TrackerTrainingPage from "./components/pages/TrackerTrainingPage/TrackerTrainingPage";
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -49,8 +53,12 @@ ReactDOM.render(
                     <Route exact path="/progress" component={ProgressPage}/>
                     <Route exact path="/exercises" component={ExercisesPage}/>
                     <Route exact path="/exercises/add" component={AddExercisePage}/>
+                    <Route exact path="/exercises/details/:exerciseId" component={ExerciseDetailsPage}/>
                     <Route exact path="/trainings" component={TrainingsPage}/>
                     <Route exact path="/trainings/add" component={AddTrainingPage}/>
+                    <Route exact path="/trainings/details/:trainingId" component={TrainingDetailsPage}/>
+                    <Route exact path="/tracker-config" component={TrackerConfigPage}/>
+                    <Route exact path="/tracker-training" component={TrackerTrainingPage}/>
                     <Switch>
                         <PrivateRoute exact path="/" component={Main} />
                     </Switch>

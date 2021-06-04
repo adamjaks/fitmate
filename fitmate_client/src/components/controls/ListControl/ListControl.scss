@@ -1,0 +1,75 @@
+@import "../../../scss/global";
+
+.ListControl {
+  $host: &;
+
+  &__input {
+    display: none;
+
+    &#{&}--visible {
+      display: block;
+    }
+  }
+
+  &__select {
+    display: none;
+
+    &#{&}--visible {
+      display: block;
+    }
+  }
+
+  &__item {
+    background: var(--color-white);
+    padding: $DEFAULT_PADDING_S;
+    display: flex;
+    align-items: center;
+    margin: $DEFAULT_MARGIN_S 0;
+    box-shadow: $DEFAULT_SHADOW_S;
+    border-radius: $DEFAULT_BORDER_RADIUS_M;
+    border-left: $DEFAULT_BORDER_SIZE_M solid var(--color-primary-500);
+  }
+
+  &__item-label {
+    font: {
+      size: $DEFAULT_FONT_SIZE_S;
+      weight: 700;
+    }
+    color: var(--color-primary-800);
+  }
+
+  &__item-checkbox {
+    width: 40px;
+    position: relative;
+
+    input[type="checkbox"] {
+      visibility: hidden;
+    }
+  }
+
+  &__item-checkbox-item {
+    width: 20px;
+    height: 20px;
+    border-radius: $DEFAULT_BORDER_RADIUS_S;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--checked {
+      background: var(--color-primary-500);
+
+      #{$host}__item-checkbox-icon {
+        display: block;
+      }
+    }
+  }
+
+  &__item-checkbox-icon {
+    color: var(--color-white);
+    font-size: $DEFAULT_FONT_SIZE_XS;
+    display: none;
+  }
+}

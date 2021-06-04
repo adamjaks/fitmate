@@ -9,9 +9,22 @@ const Exercise = require("../../models/Exercise");
 // @desc Get exercise list
 // @access Public
 router.get("/", (req, res) => {
-    Exercise.find().then(exercises => {
-        res.send(exercises);
-    })
+    Exercise.find().sort( { name: 1 } )
+        .then(exercises => {
+            res.send(exercises);
+        })
+        .catch(err => console.log(err));
+});
+
+// @route GET api/exercises/details/:id
+// @desc Get exercise details
+// @access Public
+router.get("/details/:id", (req, res) => {
+    Exercise.findOne({_id: req.params.id})
+        .then(exercise => {
+            res.send(exercise);
+        })
+        .catch(err => console.log(err));
 });
 
 // @route POST api/exercises/add
@@ -38,6 +51,15 @@ router.post("/add", (req, res) => {
                 exercise: exercise
             });
         })
+        .catch(err => console.log(err));
+});
+
+// @route POST api/exercises/delete/:id
+// @desc Delete exercise
+// @access Public
+router.delete("/delete/:id", (req, res) => {
+    Exercise.remove({_id: req.params.id})
+        .then(exercise => res.send(exercise))
         .catch(err => console.log(err));
 });
 

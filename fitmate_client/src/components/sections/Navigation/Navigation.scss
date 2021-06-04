@@ -1,0 +1,80 @@
+@import "../../../scss/global";
+
+.Navigation {
+
+  $NAVIGATION_WIDTH: 240px;
+  z-index: 10;
+
+  &__trigger {
+    width: $DEFAULT_FONT_SIZE_L;
+    height: $DEFAULT_FONT_SIZE_L;
+    font-size: $DEFAULT_FONT_SIZE_L;
+    color: $COLOR_FONT_PRIMARY;
+  }
+
+  &__items {
+    background: var(--color-primary-500);
+    display: none;
+    position: fixed;
+    top: 0;
+    width: $NAVIGATION_WIDTH;
+    right: -$NAVIGATION_WIDTH;
+    height: 100%;
+    animation: slideIn .1s forwards;
+    animation-timing-function: linear;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      color: var(--color-white);
+      padding: $DEFAULT_PADDING_S $DEFAULT_PADDING_M;
+      box-sizing: border-box;
+      border-bottom: 1px solid $COLOR_ACCENT_PRIMARY_DARKEN-1;
+      font: {
+        size: $DEFAULT_FONT_SIZE_M;
+        weight: 700;
+      };
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &#{&}--visible {
+      display: block;
+    }
+  }
+
+  &__item-icon {
+    font-size: $DEFAULT_FONT_SIZE_M;
+    height: $DEFAULT_FONT_SIZE_M;
+    width: $DEFAULT_FONT_SIZE_M;
+  }
+
+  &__item-label {
+    margin-left: $DEFAULT_MARGIN_M;
+  }
+
+  &__header {
+    height: $HEADER_SIZE;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 $DEFAULT_PADDING_M;
+  }
+
+  &__close-button {
+    color: var(--color-white);
+    font-size: $DEFAULT_FONT_SIZE_L;
+  }
+
+  @keyframes slideIn {
+    25% { right: -$NAVIGATION_WIDTH + $NAVIGATION_WIDTH * 1/4; }
+    50% { right: -$NAVIGATION_WIDTH + $NAVIGATION_WIDTH * 1/2; }
+    75% { right: -$NAVIGATION_WIDTH + $NAVIGATION_WIDTH * 3/4; }
+    100% { right: 0; }
+  }
+}

@@ -4,9 +4,8 @@ import Section from "../../sections/Section/Section";
 import SectionButton from "../../sections/SectionButton/SectionButton";
 import SectionLastTraining from "../../sections/Section/SectionLastTraining/SectionLastTraining";
 import Header from "../../sections/Header/Header";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUserAction } from "../../../store/actions/authActions";
+import TrackerButton from "../../sections/TrackerButton/TrackerButton";
+import {Link} from "react-router-dom";
 
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
@@ -40,12 +39,10 @@ class Main extends React.Component {
     }
 
     render() {
-        // const { user } = this.props.auth;
-
         return (
             <div className="Main">
                 <Header/>
-                <Section title={"Mój ostatni trening"}>
+                <Section title={"Ostatni trening"}>
                     <SectionLastTraining/>
                 </Section>
                 <SectionButton id={SECTION_BUTTONS.CALENDAR}
@@ -54,36 +51,28 @@ class Main extends React.Component {
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.PROGRESS}
-                               title={"Moje postępy"}
+                               title={"Postępy"}
                                brief={"75kg, wzrost wagi: 11%"}
                                icon={SECTION_BUTTONS.PROGRESS}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.EXERCISES}
-                               title={"Baza ćwiczeń"}
+                               title={"Atlas ćwiczeń"}
                                brief={"Ostatnio dodane: wykroki"}
                                icon={SECTION_BUTTONS.EXERCISES}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
-                               title={"Moje treningi"}
+                               title={"Treningi"}
                                brief={"Trening A,Trening B, FBW"}
                                icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
-                <button onClick={this._onLogoutClickBind}>Wyloguj</button>
+                               <Link to={"tracker-config"}>
+                                   <TrackerButton/>
+                               </Link>
             </div>
         )
     }
 }
 
-Main.propTypes = {
-    logoutUserAction: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
+Main.propTypes = {}
 
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(
-    mapStateToProps,
-    { logoutUserAction }
-)(Main);
+export default Main;

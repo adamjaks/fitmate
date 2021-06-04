@@ -62,8 +62,8 @@ class RegisterPage extends React.Component {
         return <div className="RegisterPage">
             <div className={"RegisterPage__content"}>
                 <div className={"RegisterPage__header"}>
-                    <h2>FitMate</h2>
-                    <h3>Rejestracja</h3>
+                    <h2 className={"title"}>FitMate</h2>
+                    <h3 className={"subtitle"}>Rejestracja</h3>
                 </div>
                 <form className={"RegisterPage__form"} onSubmit={this._onSubmit.bind(this)}>
                     <InputControl placeholder={"Imię i nazwisko"}
@@ -104,8 +104,8 @@ class RegisterPage extends React.Component {
                     />
                     <ButtonControl value={"Utwórz konto"}/>
                 </form>
-                <div>Masz już konto?
-                    <Link to={"/login"}><b>Zaloguj się</b></Link>
+                <div className={"RegisterPage__link"}>Masz już konto?
+                    <Link to={"/login"}> <b>Zaloguj się</b></Link>
                 </div>
             </div>
         </div>

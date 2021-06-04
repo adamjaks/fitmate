@@ -1,0 +1,45 @@
+@import "../../../scss/global";
+
+.TrackerButton {
+  border-radius: $DEFAULT_BORDER_RADIUS_M;
+  padding: $DEFAULT_PADDING_S;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-primary-500);
+
+  &__label {
+    color: var(--color-white);
+    font: {
+      weight: 700;
+      size: $DEFAULT_FONT_SIZE_S;
+    }
+  }
+
+  &__training-select {
+    background: transparent;
+    border: none;
+    color: var(--color-primary-100);
+    margin: 0;
+    padding: 0;
+    font: {
+      size: $DEFAULT_FONT_SIZE_S;
+    }
+
+    option {
+      padding: 0;
+    }
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: $DEFAULT_BORDER_SIZE_S solid var(--color-primary-100);
+    font-size: $DEFAULT_FONT_SIZE_XS;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-100);
+  }
+}

@@ -2,18 +2,18 @@
 
 .Section {
   padding: $DEFAULT_PADDING_S;
-  background: $COLOR_WHITE;
+  background: var(--color-white);
   box-shadow: $DEFAULT_SHADOW_M;
   border-radius: $DEFAULT_BORDER_RADIUS_M;
   margin: $DEFAULT_MARGIN_S 0;
 
   &__headline {
     font-weight: 700;
-    color: $COLOR_FONT_PRIMARY;
-    text-transform: uppercase;
+    color: var(--color-primary-800);
   }
 
   &__content {
+    color: var(--color-primary-700);
     margin-top: $DEFAULT_MARGIN_M;
   }
 }

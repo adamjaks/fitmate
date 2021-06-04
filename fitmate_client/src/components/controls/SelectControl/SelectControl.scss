@@ -1,0 +1,26 @@
+@import "../../../scss/global";
+@import "../../../scss/mixins/mixin-input";
+
+.SelectControl {
+  width: 100%;
+  position: relative;
+
+  &__select {
+    @include mixin-input;
+
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 8px;
+    width: 8px;
+    font-size: $DEFAULT_FONT_SIZE_XS;
+    right: $DEFAULT_MARGIN_M;
+    color: var(--color-grey-300);
+  }
+}

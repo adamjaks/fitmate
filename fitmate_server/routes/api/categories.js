@@ -5,6 +5,15 @@ const validateAddCategoryInput = require("../../validation/categories/addCategor
 
 const Category = require("../../models/Category");
 
+// @route GET api/categories
+// @desc Get categories list
+// @access Public
+router.get("/", (req, res) => {
+    Category.find().then(categories => {
+        res.send(categories);
+    })
+});
+
 // @route POST api/categories/add
 // @desc Add category
 // @access Public

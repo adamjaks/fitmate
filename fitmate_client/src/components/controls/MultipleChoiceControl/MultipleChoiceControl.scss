@@ -1,0 +1,32 @@
+@import "../../../scss/global";
+
+.MultipleChoiceControl {
+  margin: $DEFAULT_MARGIN_S 0;
+
+  &__item {
+    font-size: $DEFAULT_FONT_SIZE_S;
+    background: var(--color-primary-100);
+    color: var(--color-primary-400);
+    padding: $DEFAULT_PADDING_XS $DEFAULT_PADDING_S;
+    display: inline-flex;
+    align-items: center;
+    border-radius: $DEFAULT_BORDER_RADIUS_M;
+    margin-left: 2px;
+    margin-top: 2px;
+
+    &--active {
+      font-weight: 700;
+      background: var(--color-primary-500);
+      color: var(--color-white);
+      .MultipleChoiceControl__item-icon {
+        display: block;
+      }
+    }
+  }
+
+  &__item-icon {
+    font-size: $DEFAULT_FONT_SIZE_S;
+    margin-right: $DEFAULT_MARGIN_S;
+    display: none;
+  }
+}

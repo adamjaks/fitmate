@@ -1,19 +1,30 @@
 @import "../../../scss/global";
 
 .Header {
-  &__bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: $DEFAULT_PADDING_S;
-    box-shadow: $DEFAULT_SHADOW_M;
-    background: $COLOR_PRIMARY;
-    color: $COLOR_WHITE;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: $HEADER_SIZE;
+  padding: 0 $DEFAULT_PADDING_M;
+  box-sizing: border-box;
+  color: var(--color-primary-800);
 
   &__logo {
-    font-weight: 700;
+    font: {
+      weight: 700;
+      size: $DEFAULT_FONT_SIZE_M;
+    };
     display: flex;
     align-items: center;
+    color: var(--color-primary-500);
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary-500);
   }
 }

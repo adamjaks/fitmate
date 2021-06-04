@@ -5,19 +5,44 @@ import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
 import InputControl from "../../controls/InputControl/InputControl";
 import classnames from "classnames";
+import MultipleChoiceControl from "../../controls/MultipleChoiceControl/MultipleChoiceControl";
+import TextareaControl from "../../controls/TextareaControl/TextareaControl";
+import ListControl from "../../controls/ListControl/ListControl";
 
 const ADD_EXERCISE_ROUTE = "/api/exercises/add";
+const GET_CATEGORIES_ROUTE = "/api/categories";
 
 class AddExercisePage extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this._onItemsChangeBind = this._onItemsChange.bind(this);
+
+        this._categories = [];
+
         this.state = {
             name: "",
             description: "",
-            categoriesIds: [],
-            errors: {}
+            errors: {},
+            categories: []
         }
+    }
+
+    componentDidMount() {
+        this._fetchCategories();
+    }
+
+    _fetchCategories() {
+        axios.get(GET_CATEGORIES_ROUTE).then(res => {
+            const categories = res.data.map(category => (
+                    {...category, value: category._id}
+                )
+            );
+            this.setState({categories});
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     _onChange(event) {
@@ -26,12 +51,14 @@ class AddExercisePage extends React.Component {
 
     _onSubmit(event) {
         event.preventDefault();
+        const categoriesIds = this._categories
+            .filter(category => category.active === true)
+            .map(category => category._id);
 
-        // todo: category form
         const newExercisePayload = {
             name: this.state.name,
-            description: "",
-            categoriesIds: []
+            description: this.state.description,
+            categoriesIds
         };
 
         axios.post(ADD_EXERCISE_ROUTE, newExercisePayload)
@@ -41,31 +68,44 @@ class AddExercisePage extends React.Component {
             );
     }
 
+    _onItemsChange(items) {
+        this._categories = items;
+    }
+
     render() {
         const { errors } = this.state;
 
         return (
             <div className="AddExercisePage">
                 <Header/>
+                <h2 className={"title"}>Dodaj ćwiczenie</h2>
                 <form className={"AddExercisePage__form"} onSubmit={this._onSubmit.bind(this)}>
-                    <InputControl placeholder={"Nazwa ćwiczenia"}
-                                  value={this.state.name}
-                                  error={errors.name}
-                                  id={"name"}
-                                  onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.name
-                                  })}
-                    />
-                    <InputControl placeholder={"Kategorie (TBD)"}
-                                  value={this.state.categoriesIds}
-                                  id={"exercises"}
-                                  onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.password || errors.passwordincorrect
-                                  })}
-                    />
-                    <ButtonControl value={"Dodaj ćwiczenie"}/>
+                    <div className={"form__section"}>
+                        <InputControl placeholder={"Nazwa"}
+                                      value={this.state.name}
+                                      error={errors.name}
+                                      id={"name"}
+                                      onChange={this._onChange.bind(this)}
+                                      className={classnames("", {
+                                          invalid: errors.name
+                                      })}
+                        />
+                    </div>
+                    <div className={"form__section"}>
+                        <MultipleChoiceControl items={this.state.categories} onItemsChange={this._onItemsChangeBind}/>
+                    </div>
+                    <div className={"form__section"}>
+                        <TextareaControl placeholder={"Opis"}
+                                         value={this.state.description}
+                                         error={errors.description}
+                                         id={"description"}
+                                         onChange={this._onChange.bind(this)}
+                                         className={classnames("", {
+                                             invalid: errors.name
+                                         })}
+                        />
+                    </div>
+                    <ButtonControl value={"Dodaj"}/>
                 </form>
             </div>
         )

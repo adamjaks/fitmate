@@ -1,0 +1,28 @@
+:root {
+
+  --color-white: hsl(0, 0%, 100%);
+
+  // grey
+  @for $i from 1 through 9 {
+    $l: 100% - percentage($i/10);
+    --color-grey-#{$i*100}: hsl(232, 30%, #{$l});
+  }
+
+  // primary
+  @for $i from 1 through 9 {
+    $l: 100% - percentage($i/10);
+    --color-primary-#{$i*100}: hsl(204, 100%, #{$l});
+  }
+
+  // danger
+  @for $i from 1 through 9 {
+    $l: 100% - percentage($i/10);
+    --color-danger-#{$i*100}: hsl(3, 77%, #{$l});
+  }
+
+  // success
+  @for $i from 1 through 9 {
+    $l: 100% - percentage($i/10);
+    --color-success-#{$i*100}: hsl(134, 47%, #{$l});
+  }
+}

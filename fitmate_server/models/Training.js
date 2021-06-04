@@ -12,7 +12,11 @@ const TrainingSchema = new Schema({
     },
     exercisesIds: {
         type: Array,
-        required: false
+        required: true
+    },
+    trainingDays: {
+        type: Array,
+        required: true
     },
     date: {
         type: Date,

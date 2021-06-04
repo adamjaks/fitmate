@@ -14,6 +14,15 @@ router.get("/", (req, res) => {
     })
 });
 
+// @route GET api/trainings/details/:id
+// @desc Get training details
+// @access Public
+router.get("/details/:id", (req, res) => {
+    Training.findOne({_id: req.params.id}).then(training => {
+        res.send(training);
+    })
+});
+
 // @route POST api/trainings/add
 // @desc Add training
 // @access Public
@@ -37,6 +46,15 @@ router.post("/add", (req, res) => {
                 training: training
             });
         })
+        .catch(err => console.log(err));
+});
+
+// @route POST api/trainings/delete/:id
+// @desc Delete training
+// @access Public
+router.delete("/delete/:id", (req, res) => {
+    Training.remove({_id: req.params.id})
+        .then(training => res.send(training))
         .catch(err => console.log(err));
 });
 
