@@ -33,6 +33,10 @@ const SERIES_TO_CHOOSE = [
     },
 ];
 
+const DEFAULT_SERIES_COUNT = 3;
+const DEFAULT_REPEATS_COUNT = 12;
+
+
 class TrackerConfigPage extends React.Component {
 
     constructor(props) {
@@ -40,18 +44,43 @@ class TrackerConfigPage extends React.Component {
         this.state = {
             exercises: [],
             training: {},
-            exercisesWithValues: {}
+            exercisesWithValues: [],
+            pauseDuration: 90,
+            warmupDuration: 5 * 60
         }
 
+
         this._onStartButtonClickBind = this._onStartButtonClick.bind(this);
+        this._onPauseInputChangeBind = this._onPauseInputChange.bind(this);
+        this._onWarmupInputChangeBind = this._onWarmupInputChange.bind(this);
     }
 
     componentDidMount() {
         this._fetchTraining();
     }
 
+    _fillEmptyExercises() {
+        let exercisesWithValues = this.state.exercisesWithValues;
+
+        this.state.exercises.forEach((exercise, index) => {
+            if (!exercisesWithValues[index]) {
+                exercisesWithValues[index] = {
+                    name: exercise.name
+                }
+            }
+        });
+
+        exercisesWithValues = exercisesWithValues.map(exercise => ({
+            ...exercise,
+            series: exercise.series || DEFAULT_SERIES_COUNT,
+            repeats: exercise.repeats || DEFAULT_REPEATS_COUNT,
+        }));
+
+        this.setState({exercisesWithValues});
+    }
+
     _fetchTraining() {
-        axios.get(`${GET_TRAINING_DETAILS_ROUTE}/60b47542dc0da71b8653edcc`).then(res => {
+        axios.get(`${GET_TRAINING_DETAILS_ROUTE}/${this.props.location.state.selectedTraining}`).then(res => {
             this.setState({training: res.data});
             this._fetchExercises();
         }).catch(err => {
@@ -78,25 +107,40 @@ class TrackerConfigPage extends React.Component {
         });
     }
 
-    _onStartButtonClick(evt) {
-        this.props.history.push("/tracker-training", {exercises: this.state.exercisesWithValues});
+    _onPauseInputChange(evt) {
+        this.setState({pauseDuration: parseInt(evt.target.value, 10)});
     }
 
-    _onSeriesSelectChange(evt, name) {
+    _onWarmupInputChange(evt) {
+        this.setState({warmupDuration: parseInt(evt.target.value, 10) * 60});
+    }
+
+    async _onStartButtonClick(evt) {
+        await this._fillEmptyExercises();
+        this.props.history.push("/tracker-training",
+            {
+                exercises: this.state.exercisesWithValues,
+                pauseDuration: this.state.pauseDuration,
+                warmupDuration: this.state.warmupDuration,
+                trainingName: this.state.training.name
+            });
+    }
+
+    _onSeriesSelectChange(evt, index) {
         const newExercisesWithValues = this.state.exercisesWithValues;
 
-        newExercisesWithValues[name] = {
-            ...newExercisesWithValues[name], series: evt.target.value
+        newExercisesWithValues[index] = {
+            ...newExercisesWithValues[index], series: evt.target.value
         }
 
         this.setState({exercisesWithValues: newExercisesWithValues});
     }
 
-    _onRepeatsInputChange(evt, name) {
+    _onRepeatsInputChange(evt, index) {
         const newExercisesWithValues = this.state.exercisesWithValues;
 
-        newExercisesWithValues[name] = {
-            ...newExercisesWithValues[name], repeats: evt.target.value
+        newExercisesWithValues[index] = {
+            ...newExercisesWithValues[index], repeats: evt.target.value
         }
 
         this.setState({exercisesWithValues: newExercisesWithValues});
@@ -108,16 +152,16 @@ class TrackerConfigPage extends React.Component {
                 <Header/>
                 <h2 className={"title"}>{this.state.training.name}</h2>
                 {
-                    this.state.exercises.map(exercise => {
+                    this.state.exercises.map((exercise, index) => {
                         return (
                             <div className={"TrackerConfigPage__exercise"} key={exercise.id}>
                                 <div className={"TrackerConfigPage__exercise-label"}>{exercise.name}</div>
                                 <SelectControl className={"TrackerConfigPage__exercise-series-select"}
                                                options={SERIES_TO_CHOOSE}
-                                               onChange={(evt) => this._onSeriesSelectChange(evt, exercise.name)}/>
+                                               onChange={(evt) => this._onSeriesSelectChange(evt, index)}/>
                                 <div className={"TrackerConfigPage__exercise-weight-input"}>
-                                    <InputControl placeholder={10}
-                                                  onChange={(evt) => this._onRepeatsInputChange(evt, exercise.name)}/>
+                                    <InputControl placeholder={DEFAULT_REPEATS_COUNT}
+                                                  onChange={(evt) => this._onRepeatsInputChange(evt, index)}/>
                                 </div>
                             </div>
                         )
@@ -127,14 +171,14 @@ class TrackerConfigPage extends React.Component {
                 <div className={"TrackerConfigPage__config-item"}>
                     <div className={"TrackerConfigPage__config-item-label"}>Rozgrzewka</div>
                     <div className={"TrackerConfigPage__config-item-select"}>
-                        <InputControl placeholder={10}/>
+                        <InputControl placeholder={5} onChange={this._onWarmupInputChangeBind}/>
                     </div>
                 </div>
 
                 <div className={"TrackerConfigPage__config-item"}>
                     <div className={"TrackerConfigPage__config-item-label"}>Przerwa</div>
                     <div className={"TrackerConfigPage__config-item-select"}>
-                        <InputControl value={90}/>
+                        <InputControl placeholder={90} onChange={this._onPauseInputChangeBind}/>
                     </div>
                 </div>
                 <ButtonControl value={"Rozpocznij trening"} onClick={this._onStartButtonClickBind}/>

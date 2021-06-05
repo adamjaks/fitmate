@@ -7,7 +7,6 @@ import InputControl from "../../controls/InputControl/InputControl";
 import classnames from "classnames";
 import MultipleChoiceControl from "../../controls/MultipleChoiceControl/MultipleChoiceControl";
 import TextareaControl from "../../controls/TextareaControl/TextareaControl";
-import ListControl from "../../controls/ListControl/ListControl";
 
 const ADD_EXERCISE_ROUTE = "/api/exercises/add";
 const GET_CATEGORIES_ROUTE = "/api/categories";

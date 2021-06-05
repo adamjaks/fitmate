@@ -7,7 +7,6 @@ module.exports = function validateAddTrainingInput(data) {
     data.authorId = !isEmpty(data.authorId) ? data.authorId : "";
     data.name = !isEmpty(data.name) ? data.name : "";
 
-    console.log('data', data)
     if (Validator.isEmpty(data.authorId)) {
         errors.authorId = "Author is required";
     } else if (Validator.isEmpty(data.name)) {

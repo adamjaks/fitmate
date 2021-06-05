@@ -8,6 +8,7 @@ const TrainingDaySchema = new Schema({
     },
     date: {
         type: Date,
+        default: Date.now,
         required: true
     },
     duration: {
@@ -17,6 +18,10 @@ const TrainingDaySchema = new Schema({
     caloriesBurned: {
         type: Number,
         required: false
+    },
+    trainingName: {
+        type: String,
+        required: true
     }
 });
 

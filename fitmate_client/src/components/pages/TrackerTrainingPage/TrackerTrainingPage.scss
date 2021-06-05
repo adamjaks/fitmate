@@ -31,6 +31,27 @@
     flex-direction: column;
     justify-content: flex-start;
     position: relative;
+
+    &--hidden {
+      display: none;
+    }
+
+    &--pause {
+      width: 100%;
+      color: var(--color-warning-500);
+      justify-content: center;
+      align-items: center;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        height: $DEFAULT_BORDER_SIZE_M;
+        background: var(--color-warning-500);
+        width: 100%;
+      }
+    }
   }
 
   &__card-title {
@@ -38,7 +59,7 @@
   }
 
   &__card-value {
-    font-size: $DEFAULT_FONT_SIZE_XL;
+    font-size: $DEFAULT_FONT_SIZE_L;
     font-weight: 700;
   }
 
@@ -53,7 +74,7 @@
 
   &__card-progress-item {
     margin-right: 2px;
-    width: 50px;
+    width: 100%;
     height: 5px;
     border: 1px solid var(--color-primary-100);
     border-radius: $DEFAULT_BORDER_RADIUS_S;
@@ -66,30 +87,30 @@
 
   &__card-icon {
     @extend .TrackerTrainingPage__card;
-    flex-direction: row;
     background: var(--color-primary-500);
     color: var(--color-white);
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   &__card-icon-icon {
     font-size: $DEFAULT_FONT_SIZE_L;
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
   }
 
   &__card-icon-value {
     font: {
-      size: $DEFAULT_FONT_SIZE_XL;
+      size: $DEFAULT_FONT_SIZE_L;
       weight: 700;
     }
+    margin-top: $DEFAULT_MARGIN_S;
   }
 
   &__slider {
     width: 100%;
     position: relative;
-    margin-bottom: $DEFAULT_MARGIN_L;
+    margin-bottom: $DEFAULT_MARGIN_XL;
   }
 
   &__slider-timeline {
@@ -102,16 +123,26 @@
   }
 
   &__slider-item {
+    $host: &;
     width: 40px;
     height: 30px;
     border-radius: $DEFAULT_BORDER_RADIUS_S;
     background: var(--color-primary-100);
     color: var(--color-primary-500);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &#{&}--active {
+      background: var(--color-primary-500);
+      color: var(--color-white);
+
+      &#{$host}--pause {
+        background: var(--color-warning-500);
+      }
+    }
   }
 }

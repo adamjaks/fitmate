@@ -21,6 +21,7 @@ class Main extends React.Component {
 
         this._onSectionClickBind = this._onSectionClick.bind(this);
         this._onLogoutClickBind = this._onLogoutClick.bind(this);
+        this._onTrackerButtonClickBind = this._onTrackerButtonClick.bind(this);
     }
 
     _onLogoutClick = e => {
@@ -30,12 +31,27 @@ class Main extends React.Component {
 
     _onSectionClick(evt) {
         switch (evt.props.id) {
-            case SECTION_BUTTONS.CALENDAR: this.props.history.push("/calendar"); break;
-            case SECTION_BUTTONS.PROGRESS: this.props.history.push("/progress"); break;
-            case SECTION_BUTTONS.EXERCISES: this.props.history.push("/exercises"); break;
-            case SECTION_BUTTONS.TRAININGS: this.props.history.push("/trainings"); break;
-            default: this.props.history.push("/");
+            case SECTION_BUTTONS.CALENDAR:
+                this.props.history.push("/calendar");
+                break;
+            case SECTION_BUTTONS.PROGRESS:
+                this.props.history.push("/progress");
+                break;
+            case SECTION_BUTTONS.EXERCISES:
+                this.props.history.push("/exercises");
+                break;
+            case SECTION_BUTTONS.TRAININGS:
+                this.props.history.push("/trainings");
+                break;
+            default:
+                this.props.history.push("/");
         }
+    }
+
+    _onTrackerButtonClick(selectedTraining) {
+        this.props.history.push("/tracker-config", {
+            selectedTraining
+        });
     }
 
     render() {
@@ -51,8 +67,8 @@ class Main extends React.Component {
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.PROGRESS}
-                               title={"Postępy"}
-                               brief={"75kg, wzrost wagi: 11%"}
+                               title={"Moje treningi"}
+                               brief={"2 treningi w ciągu ostatniego tygodnia"}
                                icon={SECTION_BUTTONS.PROGRESS}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.EXERCISES}
@@ -61,13 +77,11 @@ class Main extends React.Component {
                                icon={SECTION_BUTTONS.EXERCISES}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
-                               title={"Treningi"}
+                               title={"Baza treningów"}
                                brief={"Trening A,Trening B, FBW"}
                                icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
-                               <Link to={"tracker-config"}>
-                                   <TrackerButton/>
-                               </Link>
+                <TrackerButton onClick={this._onTrackerButtonClickBind}/>
             </div>
         )
     }

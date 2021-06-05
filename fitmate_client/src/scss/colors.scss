@@ -20,6 +20,12 @@
     --color-danger-#{$i*100}: hsl(3, 77%, #{$l});
   }
 
+  // warning
+  @for $i from 1 through 9 {
+    $l: 100% - percentage($i/10);
+    --color-warning-#{$i*100}: hsl(35, 90%, #{$l});
+  }
+
   // success
   @for $i from 1 through 9 {
     $l: 100% - percentage($i/10);

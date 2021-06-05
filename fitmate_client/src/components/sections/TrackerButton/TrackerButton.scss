@@ -34,9 +34,7 @@
   &__icon {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
-    border: $DEFAULT_BORDER_SIZE_S solid var(--color-primary-100);
-    font-size: $DEFAULT_FONT_SIZE_XS;
+    font-size: $DEFAULT_FONT_SIZE_M;
     display: flex;
     align-items: center;
     justify-content: center;
