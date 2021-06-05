@@ -4,13 +4,13 @@ import Section from "../../sections/Section/Section";
 import SectionButton from "../../sections/SectionButton/SectionButton";
 import SectionLastTraining from "../../sections/Section/SectionLastTraining/SectionLastTraining";
 import Header from "../../sections/Header/Header";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUserAction } from "../../../store/actions/authActions";
+import TrackerButton from "../../sections/TrackerButton/TrackerButton";
+import {Link} from "react-router-dom";
 
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
     PROGRESS: "progress",
+    EXERCISES: "exercises",
     TRAININGS: "trainings",
 }
 
@@ -21,6 +21,7 @@ class Main extends React.Component {
 
         this._onSectionClickBind = this._onSectionClick.bind(this);
         this._onLogoutClickBind = this._onLogoutClick.bind(this);
+        this._onTrackerButtonClickBind = this._onTrackerButtonClick.bind(this);
     }
 
     _onLogoutClick = e => {
@@ -30,50 +31,62 @@ class Main extends React.Component {
 
     _onSectionClick(evt) {
         switch (evt.props.id) {
-            case SECTION_BUTTONS.CALENDAR: this.props.history.push("/calendar"); break;
-            case SECTION_BUTTONS.PROGRESS: this.props.history.push("/progress"); break;
-            case SECTION_BUTTONS.TRAININGS: this.props.history.push("/trainings"); break;
-            default: this.props.history.push("/");
+            case SECTION_BUTTONS.CALENDAR:
+                this.props.history.push("/calendar");
+                break;
+            case SECTION_BUTTONS.PROGRESS:
+                this.props.history.push("/progress");
+                break;
+            case SECTION_BUTTONS.EXERCISES:
+                this.props.history.push("/exercises");
+                break;
+            case SECTION_BUTTONS.TRAININGS:
+                this.props.history.push("/trainings");
+                break;
+            default:
+                this.props.history.push("/");
         }
     }
 
-    render() {
-        // const { user } = this.props.auth;
+    _onTrackerButtonClick(selectedTraining) {
+        this.props.history.push("/tracker-config", {
+            selectedTraining
+        });
+    }
 
+    render() {
         return (
             <div className="Main">
                 <Header/>
-                <Section title={"Mój ostatni trening"}>
+                <Section title={"Ostatni trening"}>
                     <SectionLastTraining/>
                 </Section>
                 <SectionButton id={SECTION_BUTTONS.CALENDAR}
                                title={"Kalendarz"}
                                brief={"Ostatni trening: 23/04/2021"}
+                               icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.PROGRESS}
-                               title={"Moje postępy"}
-                               brief={"75kg, wzrost wagi: 11%"}
+                               title={"Moje treningi"}
+                               brief={"2 treningi w ciągu ostatniego tygodnia"}
+                               icon={SECTION_BUTTONS.PROGRESS}
+                               onClick={this._onSectionClickBind}/>
+                <SectionButton id={SECTION_BUTTONS.EXERCISES}
+                               title={"Atlas ćwiczeń"}
+                               brief={"Ostatnio dodane: wykroki"}
+                               icon={SECTION_BUTTONS.EXERCISES}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
-                               title={"Moje treningi"}
+                               title={"Baza treningów"}
                                brief={"Trening A,Trening B, FBW"}
+                               icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
-                <button onClick={this._onLogoutClickBind}>Wyloguj</button>
+                <TrackerButton onClick={this._onTrackerButtonClickBind}/>
             </div>
         )
     }
 }
 
-Main.propTypes = {
-    logoutUserAction: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
+Main.propTypes = {}
 
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(
-    mapStateToProps,
-    { logoutUserAction }
-)(Main);
+export default Main;

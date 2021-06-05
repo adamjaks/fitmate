@@ -1,0 +1,12 @@
+@import "../../../scss/global";
+@import "../../../scss/mixins/mixin-input";
+
+.TextareaControl {
+    width: 100%;
+
+    &__textarea {
+        @include mixin-input;
+        width: 100%;
+        resize: none;
+    }
+}

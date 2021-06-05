@@ -1,0 +1,36 @@
+@import "../../../scss/global";
+
+.TrackerConfigPage {
+  font-size: $DEFAULT_FONT_SIZE_S;
+  padding: $DEFAULT_PADDING_S;
+
+  &__exercise {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__exercise-label {
+    font: {
+      size: $DEFAULT_FONT_SIZE_S;
+    }
+    color: var(--color-primary-800);
+    width: 70%;
+  }
+
+  &__exercise-series-select {
+    width: 10%;
+  }
+
+  &__exercise-weight-input {
+    width: 20%;
+  }
+
+  &__config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $DEFAULT_FONT_SIZE_S;
+    color: var(--color-primary-800);
+  }
+}

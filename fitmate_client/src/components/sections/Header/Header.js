@@ -1,17 +1,16 @@
 import React from 'react';
 import './Header.scss';
-import { FaBars } from "react-icons/fa";
+import Navigation from "../Navigation/Navigation";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <div className="Header">
-      <div className={"Header__bar"}>
+      <Link to={"/"}>
           <div className={"Header__logo"}>
               FitMate
           </div>
-          <div className={"Header__menu"}>
-            <FaBars/>
-          </div>
-      </div>
+      </Link>
+      <Navigation/>
   </div>
 );
 

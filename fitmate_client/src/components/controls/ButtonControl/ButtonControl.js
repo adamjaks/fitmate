@@ -1,16 +1,32 @@
 import React from 'react';
 import './ButtonControl.scss';
 
-const ButtonControl = (props) => (
-  <button className="ButtonControl">
-      { props.value }
-  </button>
-);
+class ButtonControl extends React.Component {
+    constructor(props) {
+        super(props)
+        this._onClickBind = this._onClick.bind(this);
+    }
+
+    _onClick() {
+        if (this.props.onClick) {
+            this.props.onClick(this);
+        }
+    }
+
+    render() {
+        return (
+            <button className={`ButtonControl ButtonControl--${this.props.type}`} onClick={this._onClickBind}>
+                { this.props.value }
+            </button>
+        )
+    }
+}
+
 
 ButtonControl.propTypes = {};
 
 ButtonControl.defaultProps = {
-    type: "text"
+    type: "primary",
 };
 
 export default ButtonControl;

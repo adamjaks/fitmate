@@ -1,0 +1,148 @@
+@import "../../../scss/global";
+
+.TrackerTrainingPage {
+  font-size: $DEFAULT_FONT_SIZE_S;
+  padding: $DEFAULT_PADDING_S;
+  color: var(--color-primary-800);
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &#{&}--highlight {
+      margin-top: $DEFAULT_MARGIN_L;
+    }
+  }
+
+  &__card {
+    width: 42%;
+    height: 60px;
+    margin-right: $DEFAULT_MARGIN_XS;
+    margin-left: $DEFAULT_MARGIN_XS;
+    margin-bottom: $DEFAULT_MARGIN_S;
+    background: var(--color-white);
+    box-shadow: $DEFAULT_SHADOW_M;
+    border-radius: $DEFAULT_BORDER_RADIUS_M;
+    padding: $DEFAULT_PADDING_XS;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+
+    &--hidden {
+      display: none;
+    }
+
+    &--pause {
+      width: 100%;
+      color: var(--color-warning-500);
+      justify-content: center;
+      align-items: center;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        height: $DEFAULT_BORDER_SIZE_M;
+        background: var(--color-warning-500);
+        width: 100%;
+      }
+    }
+  }
+
+  &__card-title {
+    color: var(--color-primary-700);
+  }
+
+  &__card-value {
+    font-size: $DEFAULT_FONT_SIZE_L;
+    font-weight: 700;
+  }
+
+  &__card-progress {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 2 * #{$DEFAULT_PADDING_XS});
+    position: absolute;
+    bottom: $DEFAULT_PADDING_XS;
+    left: $DEFAULT_PADDING_XS;
+  }
+
+  &__card-progress-item {
+    margin-right: 2px;
+    width: 100%;
+    height: 5px;
+    border: 1px solid var(--color-primary-100);
+    border-radius: $DEFAULT_BORDER_RADIUS_S;
+
+    &#{&}--filled {
+      background: var(--color-primary-500);
+      border: none;
+    }
+  }
+
+  &__card-icon {
+    @extend .TrackerTrainingPage__card;
+    background: var(--color-primary-500);
+    color: var(--color-white);
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__card-icon-icon {
+    font-size: $DEFAULT_FONT_SIZE_L;
+    width: 20px;
+    height: 20px;
+  }
+
+  &__card-icon-value {
+    font: {
+      size: $DEFAULT_FONT_SIZE_L;
+      weight: 700;
+    }
+    margin-top: $DEFAULT_MARGIN_S;
+  }
+
+  &__slider {
+    width: 100%;
+    position: relative;
+    margin-bottom: $DEFAULT_MARGIN_XL;
+  }
+
+  &__slider-timeline {
+    border-radius: $DEFAULT_BORDER_RADIUS_S;
+    background: var(--color-primary-500);
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    top: 50%;
+  }
+
+  &__slider-item {
+    $host: &;
+    width: 40px;
+    height: 30px;
+    border-radius: $DEFAULT_BORDER_RADIUS_S;
+    background: var(--color-primary-100);
+    color: var(--color-primary-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &#{&}--active {
+      background: var(--color-primary-500);
+      color: var(--color-white);
+
+      &#{$host}--pause {
+        background: var(--color-warning-500);
+      }
+    }
+  }
+}

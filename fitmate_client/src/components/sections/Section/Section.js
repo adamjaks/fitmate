@@ -1,12 +1,17 @@
 import React from 'react';
+import { FaSearch } from 'react-icons/fa';
+
 import './Section.scss';
 
 const Section = (props) => (
     <div>
         <div className="Section">
-            <div className={"Section__headline"}>{ props.title }</div>
+            <div className={"Section__headline"}>
+                <div className={"Section__headline-title"}>{ props.title }</div>
+                {/*<div className={"Section__headline-button"}><FaSearch/></div>*/}
+            </div>
             <div className={"Section__content"}>
-                {/*<SectionLastTraining />*/} {props.children}
+                {props.children}
             </div>
         </div>
     </div>

@@ -1,0 +1,21 @@
+@import "../global";
+
+@mixin mixin-input {
+  box-sizing: border-box;
+  background: var(--color-grey-100);
+  color: var(--color-grey-400);
+  padding: $DEFAULT_MARGIN_M;
+  font-size: $DEFAULT_FONT_SIZE_S;
+  border: none;
+  margin-top: $DEFAULT_MARGIN_S;
+  margin-bottom: $DEFAULT_MARGIN_S;
+  border-radius: $DEFAULT_BORDER_RADIUS_M;
+
+  &:hover {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--color-grey-400);
+  }
+}

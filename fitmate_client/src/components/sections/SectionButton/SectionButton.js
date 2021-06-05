@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
 import { FaAngleRight } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FaRegChartBar } from 'react-icons/fa';
 import { FaRunning } from 'react-icons/fa';
+import { BiDumbbell } from 'react-icons/bi';
 
 import './SectionButton.scss';
 
@@ -12,14 +12,11 @@ class SectionButton extends React.Component {
 
     _icon = null;
 
-    constructor(props) {
-        super(props);
-    }
-
     _getIcon() {
-        switch(this.props.id) {
+        switch(this.props.icon) {
             case "calendar": return <FaRegCalendarAlt />;
             case "progress": return <FaRegChartBar />;
+            case "exercises": return <BiDumbbell />;
             case "trainings": return <FaRunning />;
             default: return null;
         }
@@ -45,10 +42,6 @@ class SectionButton extends React.Component {
         )
     }
 }
-
-// SectionButton.propTypes = {
-//     onPress: PropTypes.func.isRequired
-// };
 
 SectionButton.defaultProps = {};
 

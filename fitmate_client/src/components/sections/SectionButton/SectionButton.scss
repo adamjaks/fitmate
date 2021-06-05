@@ -2,40 +2,55 @@
 
 .SectionButton {
   padding: $DEFAULT_PADDING_S;
-  background: $COLOR_WHITE;
+  background: var(--color-white);
   box-shadow: $DEFAULT_SHADOW_M;
   border-radius: $DEFAULT_BORDER_RADIUS_M;
   margin: $DEFAULT_MARGIN_S 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-left: $DEFAULT_BORDER_SIZE_M solid var(--color-primary-500);
 
   &__icon {
     text-align: left;
-    font-size: $DEFAULT_FONT_SIZE_XL;
-    width: 15%;
-    color: $COLOR_FONT_PRIMARY;
+    font-size: $DEFAULT_FONT_SIZE_M;
+    border-radius: $DEFAULT_BORDER_RADIUS_M;
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary-500);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__label-wrapper {
     width: 75%;
     text-align: left;
+    margin-left: $DEFAULT_MARGIN_M;
   }
 
   &__title {
     font-weight: 700;
-    color: $COLOR_FONT_PRIMARY;
-    text-transform: uppercase;
-  }
-
-  &__brief {
-    color: $COLOR_FONT_PRIMARY;
+    color: var(--color-primary-800);
+    line-height: 1.25;
     font-size: $DEFAULT_FONT_SIZE_S;
   }
 
+  &__brief {
+    color: var(--color-primary-700);
+    font-size: $DEFAULT_FONT_SIZE_S;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+  }
+
   &__action-button {
-    text-align: right;
-    color: $COLOR_PRIMARY;
-    width: 10%;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    color: var(--color-primary-600);
   }
 }

@@ -1,11 +1,10 @@
 @import '../../../scss/global';
 
 .RegisterPage {
-  background: $COLOR_WHITE;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30%;
 
   &__content {
     width: 90%;
@@ -32,5 +31,9 @@
 
   &__form {
     margin-top: $DEFAULT_MARGIN_L;
+  }
+
+  &__link {
+    margin-top: $DEFAULT_MARGIN_M;
   }
 }

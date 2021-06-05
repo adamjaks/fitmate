@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUserAction } from "../../../store/actions/authActions";
 import classnames from "classnames";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -56,8 +56,8 @@ class LoginPage extends React.Component {
         return <div className="LoginPage">
             <div className={"LoginPage__content"}>
                 <div className={"LoginPage__header"}>
-                    <h2>FitMate</h2>
-                    <h3>Logowanie</h3>
+                    <h2 className={"title"}>FitMate</h2>
+                    <h3 className={"subtitle"}>Logowanie</h3>
                 </div>
                 <form className={"LoginPage__form"} onSubmit={this._onSubmit.bind(this)}>
                     <InputControl placeholder={"Email"}
@@ -80,7 +80,7 @@ class LoginPage extends React.Component {
                     />
                     <ButtonControl value={"Zaloguj"}/>
                 </form>
-                <div>Nie masz konta?
+                <div className={"LoginPage__link"}>Nie masz konta?
                     <Link to={"/register"}><b> Zarejestruj się</b></Link>
                 </div>
             </div>
@@ -95,6 +95,7 @@ LoginPage.propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors

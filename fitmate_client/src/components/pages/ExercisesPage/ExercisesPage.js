@@ -1,0 +1,94 @@
+import React from 'react';
+import './ExercisesPage.scss';
+import SectionButton from "../../sections/SectionButton/SectionButton";
+import Header from "../../sections/Header/Header";
+import ButtonControl from "../../controls/ButtonControl/ButtonControl";
+import axios from "axios";
+import {Link} from "react-router-dom";
+import SelectControl from "../../controls/SelectControl/SelectControl";
+
+const GET_EXERCISES_ROUTE = "/api/exercises";
+const GET_CATEGORIES_ROUTE = "/api/categories";
+
+class ExercisesPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this._onExerciseClickBind = this._onExerciseClick.bind(this);
+        this._onSelectChangeBind = this._onSelectChange.bind(this);
+
+        this.state = {
+            exercises: [],
+            categories: []
+        }
+    }
+
+    componentDidMount() {
+        this._fetchExercises();
+        this._fetchCategories();
+    }
+
+    _onExerciseClick(evt) {
+        this.props.history.push(`/exercises/details/${evt.props.exerciseId}`);
+    }
+
+    _onSelectChange(evt) {
+        // todo: options passed to selectcontrol should be in good format (value instead of _id)
+        // todo: route to get find with filters in mongo (evt.target.value as filter category)
+    }
+
+    _fetchExercises() {
+        axios.get(GET_EXERCISES_ROUTE).then(res => {
+            this.setState(({exercises: res.data}))
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    _fetchCategories() {
+        axios.get(GET_CATEGORIES_ROUTE).then(res => {
+            this.setState({categories: res.data});
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    _getBriefCategories(categoriesIds) {
+        return this.state.categories
+            .filter(category => categoriesIds.includes(category._id))
+            .map(category => category.name)
+            .join(", ");
+    }
+
+    // todo: filtering via category
+    render() {
+        return (
+            <div className="ExercisesPage">
+                <Header/>
+                <h2 className={"title"}>Atlas ćwiczeń</h2>
+                <SelectControl options={this.state.categories} onChange={this._onSelectChangeBind}/>
+                {
+                    this.state.exercises.map((exercise) => {
+                        return <SectionButton title={exercise.name}
+                                          brief={this._getBriefCategories(exercise.categoriesIds)}
+                                          key={exercise._id}
+                                          icon={"exercises"}
+                                          onClick={this._onExerciseClickBind}
+                                          exerciseId={exercise._id} />
+                    })
+                }
+                <Link to={"/exercises/add"}>
+                    <ButtonControl value={"Dodaj ćwiczenie"}/>
+                </Link>
+
+            </div>
+        )
+    }
+}
+
+ExercisesPage.propTypes = {};
+
+ExercisesPage.defaultProps = {};
+
+export default ExercisesPage;
