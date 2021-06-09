@@ -3,7 +3,7 @@
 .Navigation {
 
   $NAVIGATION_WIDTH: 240px;
-  z-index: 10;
+  z-index: 10000;
 
   &__trigger {
     width: $DEFAULT_FONT_SIZE_L;

@@ -35,6 +35,9 @@
     color: var(--color-primary-800);
     line-height: 1.25;
     font-size: $DEFAULT_FONT_SIZE_S;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__brief {

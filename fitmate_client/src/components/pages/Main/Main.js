@@ -67,7 +67,7 @@ class Main extends React.Component {
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.PROGRESS}
-                               title={"Moje treningi"}
+                               title={"Moje postępy"}
                                brief={"2 treningi w ciągu ostatniego tygodnia"}
                                icon={SECTION_BUTTONS.PROGRESS}
                                onClick={this._onSectionClickBind}/>

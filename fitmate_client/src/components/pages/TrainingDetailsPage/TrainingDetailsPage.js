@@ -4,8 +4,10 @@ import Section from "../../sections/Section/Section";
 import Header from "../../sections/Header/Header";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
+import { BiDumbbell } from "react-icons/bi";
 
 const GET_TRAINING_DETAILS_ROUTE = "/api/trainings/details";
+const GET_EXERCISES_ROUTE = "/api/exercises/";
 const DELETE_TRAINING_ROUTE = "/api/trainings/delete";
 
 class TrainingDetailsPage extends React.Component {
@@ -20,8 +22,8 @@ class TrainingDetailsPage extends React.Component {
             authorId: "",
             name: "",
             exercisesIds: [],
-            trainingDays: [],
-            date: null
+            date: null,
+            exercisesNames: []
         }
     }
 
@@ -31,7 +33,20 @@ class TrainingDetailsPage extends React.Component {
 
     _fetchTrainingData() {
         axios.get(`${GET_TRAINING_DETAILS_ROUTE}/${this.props.match.params.trainingId}`).then(res => {
-            this.setState({...res.data})
+            this.setState({...res.data});
+            this._getExercisesNames();
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    _getExercisesNames() {
+        axios.get(GET_EXERCISES_ROUTE).then(res => {
+            const exercises = res.data;
+            const exercisesNames = exercises
+                .filter(exercise => this.state.exercisesIds.includes(exercise._id))
+                .map(exercise => exercise.name);
+            this.setState({exercisesNames})
         }).catch(err => {
             console.log(err);
         });
@@ -46,20 +61,30 @@ class TrainingDetailsPage extends React.Component {
     }
 
     _onButtonEditClick() {
-        //
+        this.props.history.push("/trainings/edit", {
+            ...this.state,
+            id: this.props.match.params.trainingId
+        });
     }
 
-    // todo: filtering via category
     render() {
         return (
             <div className="TrainingDetailsPage">
                 <Header/>
                 <h2 className={"title"}>{this.state.name}</h2>
                 <Section>
-                    Cwiczenia:
-                    { this.state.exercisesIds }
-                    Dni:
-                    { this.state.trainingDays }
+                    { this.state.exercisesNames.map((exerciseName, i) => {
+                        return (
+                            <div className={"TrainingDetailsPage__exercise"} key={i}>
+                                <div className={"TrainingDetailsPage__exercise-icon"}>
+                                    <BiDumbbell />
+                                </div>
+                                <div className={"TrainingDetailsPage__exercise-label"}>
+                                    { exerciseName }
+                                </div>
+                            </div>
+                        )
+                    }) }
                 </Section>
                 <ButtonControl
                     value={"Edytuj trening"}

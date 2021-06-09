@@ -9,7 +9,9 @@ class SelectControl extends React.Component {
                 <select className={"SelectControl__select"}
                         placeholder={this.props.placeholder}
                         multiple={this.props.multiple}
-                        onChange={this.props.onChange}>
+                        onChange={this.props.onChange}
+                        defaultValue={"blank"}>
+                    <option value="blank">{this.props.labelDefault || "Wszystkie"}</option>
                     {
                         this.props.options.map((option, index) => {
                             return <option

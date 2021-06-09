@@ -60,20 +60,30 @@ class ExerciseDetailsPage extends React.Component {
     }
 
     _onButtonEditClick() {
-        //
+        this.props.history.push("/exercises/edit", {
+            ...this.state,
+            id: this.props.match.params.exerciseId
+        });
     }
 
-    // todo: filtering via category
     render() {
         return (
             <div className="ExerciseDetailsPage">
                 <Header/>
                 <h2 className={"title"}>{this.state.name}</h2>
                 <Section>
-                    {this.state.description}
-                    { this.state.categoriesNames.map(category => {
-                        return <div key={category}>{category}</div>
-                    })}
+                    <div className={"ExerciseDetailsPage__categories"}>
+                        { this.state.categoriesNames.map(category => {
+                            return (
+                                <div className={"ExerciseDetailsPage__category-item"} key={category}>
+                                    {category}
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className={"ExerciseDetailsPage__description"}>
+                        {this.state.description}
+                    </div>
                 </Section>
                 <ButtonControl
                     value={"Edytuj ćwiczenie"}
