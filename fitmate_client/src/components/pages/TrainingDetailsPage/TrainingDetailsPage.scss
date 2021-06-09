@@ -1,1 +1,25 @@
-.TrainingDetailsPage {}
+@import "../../../scss/global";
+
+.TrainingDetailsPage {
+  font-size: $DEFAULT_FONT_SIZE_S;
+
+  &__exercise {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: $DEFAULT_MARGIN_S;
+  }
+
+  &__exercise-icon {
+    width: 16px;
+    height: 16px;
+    padding: $DEFAULT_PADDING_XS;
+    background: var(--color-primary-500);
+    color: var(--color-white);
+    margin-right: $DEFAULT_MARGIN_S;
+    border-radius: $DEFAULT_BORDER_RADIUS_M;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

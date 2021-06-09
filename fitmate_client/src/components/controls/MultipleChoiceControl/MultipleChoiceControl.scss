@@ -11,8 +11,8 @@
     display: inline-flex;
     align-items: center;
     border-radius: $DEFAULT_BORDER_RADIUS_M;
-    margin-left: 2px;
-    margin-top: 2px;
+    margin-right: $DEFAULT_MARGIN_S;
+    margin-bottom: $DEFAULT_MARGIN_S;
 
     &--active {
       font-weight: 700;

@@ -49,6 +49,22 @@ router.post("/add", (req, res) => {
         .catch(err => console.log(err));
 });
 
+// @route POST api/exercises/edit
+// @desc Edit exercise
+// @access Public
+router.put("/edit/:id", (req, res) => {
+    // const { errors, isValid } = validateAddTrainingInput(req.body);
+
+    // if (!isValid) {
+    //     return res.status(400).json(errors);
+    // }
+
+    Training.updateOne({_id: req.params.id},
+        {$set: {name: req.body.name, exercisesIds: req.body.exercisesIds}})
+        .then(training => res.send(training))
+        .catch(err => console.log(err));
+});
+
 // @route POST api/trainings/delete/:id
 // @desc Delete training
 // @access Public

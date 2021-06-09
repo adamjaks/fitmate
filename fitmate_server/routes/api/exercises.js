@@ -54,6 +54,22 @@ router.post("/add", (req, res) => {
         .catch(err => console.log(err));
 });
 
+// @route POST api/exercises/edit
+// @desc Edit exercise
+// @access Public
+router.put("/edit/:id", (req, res) => {
+    const { errors, isValid } = validateAddExerciseInput(req.body);
+
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    Exercise.updateOne({_id: req.params.id},
+        {$set: {name: req.body.name, description: req.body.description, categoriesIds: req.body.categoriesIds}})
+        .then(exercise => res.send(exercise))
+        .catch(err => console.log(err));
+});
+
 // @route POST api/exercises/delete/:id
 // @desc Delete exercise
 // @access Public

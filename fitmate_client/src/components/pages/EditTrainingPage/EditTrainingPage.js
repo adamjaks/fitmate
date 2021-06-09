@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./AddTrainingPage.scss";
+import "./EditTrainingPage.scss";
 
 import Header from "../../sections/Header/Header";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
@@ -9,12 +9,12 @@ import InputControl from "../../controls/InputControl/InputControl";
 import classnames from "classnames";
 import ListControl from "../../controls/ListControl/ListControl";
 
-const ADD_TRAINING_ROUTE = "/api/trainings/add";
+const EDIT_TRAINING_ROUTE = "/api/trainings/edit";
 
 const GET_EXERCISES_ROUTE = "/api/exercises";
 const GET_CATEGORIES_ROUTE = "/api/categories";
 
-class AddTrainingPage extends React.Component {
+class EditTrainingPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -35,6 +35,7 @@ class AddTrainingPage extends React.Component {
     componentDidMount() {
         this._fetchExercises();
         this._fetchCategories();
+        this.setState({...this.props.location.state})
     }
 
     _fetchExercises() {
@@ -82,11 +83,10 @@ class AddTrainingPage extends React.Component {
 
         const newTrainingPayload = {
             name: this.state.name,
-            authorId: "1",
             exercisesIds: this.state.pickedExercisesFromList,
         };
 
-        axios.post(ADD_TRAINING_ROUTE, newTrainingPayload)
+        axios.put(`${EDIT_TRAINING_ROUTE}/${this.state.id}`, newTrainingPayload)
             .then(res => this.props.history.push("/trainings"))
             .catch(err =>
                 console.log(err)
@@ -97,10 +97,10 @@ class AddTrainingPage extends React.Component {
         const { errors } = this.state;
 
         return (
-            <div className="AddTrainingPage">
+            <div className="EditTrainingPage">
                 <Header/>
-                <h2 className={"title"}>Dodaj trening</h2>
-                <form className={"AddTrainingPage__form"} onSubmit={this._onSubmit.bind(this)}>
+                <h2 className={"title"}>Edytuj trening</h2>
+                <form className={"EditTrainingPage__form"} onSubmit={this._onSubmit.bind(this)}>
                     <InputControl placeholder={"Nazwa"}
                                   value={this.state.name}
                                   error={errors.name}
@@ -116,15 +116,15 @@ class AddTrainingPage extends React.Component {
                         searchable={true}
                         onSort={this._onListSortBind}
                         onItemStateChanged={this._onListItemStateChangedBind}/>
-                    <ButtonControl value={"Dodaj"}/>
+                    <ButtonControl value={"Aktualizuj"}/>
                 </form>
             </div>
         )
     }
 }
 
-AddTrainingPage.propTypes = {};
+EditTrainingPage.propTypes = {};
 
-AddTrainingPage.defaultProps = {};
+EditTrainingPage.defaultProps = {};
 
-export default AddTrainingPage;
+export default EditTrainingPage;

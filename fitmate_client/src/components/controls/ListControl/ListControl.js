@@ -62,14 +62,13 @@ class ListControl extends React.Component {
                     classnames("ListControl__select", { "ListControl__select--visible": this.props.searchable }) }>
                     <SelectControl
                         type={"search"}
-                        placeholder={"Kategoria"}
                         options={this.props.searchableItems}
                         onChange={this._onSearchSelectChangeBind}/>
                 </div>
 
                 { this.props.items.map((item, i) => {
                     return (
-                        <label className={"ListControl__item"} key={item.value}>
+                        <label className={"ListControl__item"} key={i}>
                             <div className={"ListControl__item-checkbox"}>
                                 <input type={"checkbox"} id={ item.value } onChange={this._onItemStateChangedBind}/>
                                 <div className={classnames(

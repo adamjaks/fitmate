@@ -20,6 +20,7 @@ class ExercisesPage extends React.Component {
 
         this.state = {
             exercises: [],
+            exercisesFiltered: [],
             categories: []
         }
     }
@@ -34,13 +35,20 @@ class ExercisesPage extends React.Component {
     }
 
     _onSelectChange(evt) {
-        // todo: options passed to selectcontrol should be in good format (value instead of _id)
-        // todo: route to get find with filters in mongo (evt.target.value as filter category)
+        if (evt.target.value === "blank") {
+            this.setState({exercisesFiltered: this.state.exercises});
+            return;
+        }
+
+        const exercisesFiltered = this.state.exercises
+            .filter(exercise => exercise.categoriesIds.includes(evt.target.value));
+
+        this.setState({exercisesFiltered: exercisesFiltered});
     }
 
     _fetchExercises() {
         axios.get(GET_EXERCISES_ROUTE).then(res => {
-            this.setState(({exercises: res.data}))
+            this.setState(({exercises: res.data, exercisesFiltered: res.data}))
         }).catch(err => {
             console.log(err);
         });
@@ -48,7 +56,8 @@ class ExercisesPage extends React.Component {
 
     _fetchCategories() {
         axios.get(GET_CATEGORIES_ROUTE).then(res => {
-            this.setState({categories: res.data});
+            const categoriesToOptionsFormatted = res.data.map(category => ({ ...category, value: category._id}));
+            this.setState({categories: categoriesToOptionsFormatted});
         }).catch(err => {
             console.log(err);
         });
@@ -69,10 +78,10 @@ class ExercisesPage extends React.Component {
                 <h2 className={"title"}>Atlas ćwiczeń</h2>
                 <SelectControl options={this.state.categories} onChange={this._onSelectChangeBind}/>
                 {
-                    this.state.exercises.map((exercise) => {
+                    this.state.exercisesFiltered.map((exercise, i) => {
                         return <SectionButton title={exercise.name}
                                           brief={this._getBriefCategories(exercise.categoriesIds)}
-                                          key={exercise._id}
+                                          key={i}
                                           icon={"exercises"}
                                           onClick={this._onExerciseClickBind}
                                           exerciseId={exercise._id} />

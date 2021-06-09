@@ -4,17 +4,13 @@ const Schema = mongoose.Schema;
 const TrainingSchema = new Schema({
     authorId: {
         type: Number,
-        required: true
+        required: false
     },
     name: {
         type: String,
         required: true
     },
     exercisesIds: {
-        type: Array,
-        required: true
-    },
-    trainingDays: {
         type: Array,
         required: true
     },

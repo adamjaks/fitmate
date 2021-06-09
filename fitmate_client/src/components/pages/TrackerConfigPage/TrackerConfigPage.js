@@ -156,12 +156,17 @@ class TrackerConfigPage extends React.Component {
                         return (
                             <div className={"TrackerConfigPage__exercise"} key={exercise.id}>
                                 <div className={"TrackerConfigPage__exercise-label"}>{exercise.name}</div>
-                                <SelectControl className={"TrackerConfigPage__exercise-series-select"}
-                                               options={SERIES_TO_CHOOSE}
-                                               onChange={(evt) => this._onSeriesSelectChange(evt, index)}/>
-                                <div className={"TrackerConfigPage__exercise-weight-input"}>
-                                    <InputControl placeholder={DEFAULT_REPEATS_COUNT}
-                                                  onChange={(evt) => this._onRepeatsInputChange(evt, index)}/>
+                                <div className={"TrackerConfigPage__exercise-controls"}>
+                                    <div className={"TrackerConfigPage__exercise-series-select"}>
+                                        <SelectControl className={"TrackerConfigPage__exercise-series-select"}
+                                                       options={SERIES_TO_CHOOSE}
+                                                       labelDefault={"Ilość serii"}
+                                                       onChange={(evt) => this._onSeriesSelectChange(evt, index)}/>
+                                    </div>
+                                    <div className={"TrackerConfigPage__exercise-weight-input"}>
+                                        <InputControl placeholder={DEFAULT_REPEATS_COUNT}
+                                                      onChange={(evt) => this._onRepeatsInputChange(evt, index)}/>
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -170,15 +175,21 @@ class TrackerConfigPage extends React.Component {
 
                 <div className={"TrackerConfigPage__config-item"}>
                     <div className={"TrackerConfigPage__config-item-label"}>Rozgrzewka</div>
-                    <div className={"TrackerConfigPage__config-item-select"}>
+                    <div className={"TrackerConfigPage__config-item-input"}>
                         <InputControl placeholder={5} onChange={this._onWarmupInputChangeBind}/>
+                    </div>
+                    <div className={"TrackerConfigPage__config-item-unit"}>
+                        min
                     </div>
                 </div>
 
                 <div className={"TrackerConfigPage__config-item"}>
                     <div className={"TrackerConfigPage__config-item-label"}>Przerwa</div>
-                    <div className={"TrackerConfigPage__config-item-select"}>
+                    <div className={"TrackerConfigPage__config-item-input"}>
                         <InputControl placeholder={90} onChange={this._onPauseInputChangeBind}/>
+                    </div>
+                    <div className={"TrackerConfigPage__config-item-unit"}>
+                        sek
                     </div>
                 </div>
                 <ButtonControl value={"Rozpocznij trening"} onClick={this._onStartButtonClickBind}/>

@@ -16,6 +16,7 @@ import TrainingsPage from "./components/pages/TrainingsPage/TrainingsPage";
 import ExercisesPage from "./components/pages/ExercisesPage/ExercisesPage";
 import AddTrainingPage from "./components/pages/AddTrainingPage/AddTrainingPage"
 import AddExercisePage from "./components/pages/AddExercisePage/AddExercisePage"
+import EditExercisePage from "./components/pages/EditExercisePage/EditExercisePage"
 import TrainingDetailsPage from "./components/pages/TrainingDetailsPage/TrainingDetailsPage"
 import ExerciseDetailsPage from "./components/pages/ExerciseDetailsPage/ExerciseDetailsPage"
 import TrackerConfigPage from "./components/pages/TrackerConfigPage/TrackerConfigPage"
@@ -25,6 +26,7 @@ import setAuthToken from "./components/utils/setAuthToken";
 import store from "./store/store";
 import { setCurrentUserAction, logoutUserAction } from "./store/actions/authActions";
 import TrackerTrainingPage from "./components/pages/TrackerTrainingPage/TrackerTrainingPage";
+import EditTrainingPage from "./components/pages/EditTrainingPage/EditTrainingPage";
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -41,7 +43,6 @@ if (localStorage.jwtToken) {
     }
 }
 
-// todo: rewrite to dissent component
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
@@ -53,9 +54,11 @@ ReactDOM.render(
                     <Route exact path="/progress" component={ProgressPage}/>
                     <Route exact path="/exercises" component={ExercisesPage}/>
                     <Route exact path="/exercises/add" component={AddExercisePage}/>
+                    <Route exact path="/exercises/edit" component={EditExercisePage}/>
                     <Route exact path="/exercises/details/:exerciseId" component={ExerciseDetailsPage}/>
                     <Route exact path="/trainings" component={TrainingsPage}/>
                     <Route exact path="/trainings/add" component={AddTrainingPage}/>
+                    <Route exact path="/trainings/edit" component={EditTrainingPage}/>
                     <Route exact path="/trainings/details/:trainingId" component={TrainingDetailsPage}/>
                     <Route exact path="/tracker-config" component={TrackerConfigPage}/>
                     <Route exact path="/tracker-training" component={TrackerTrainingPage}/>

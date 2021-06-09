@@ -35,7 +35,7 @@
       size: $DEFAULT_FONT_SIZE_S;
       weight: 700;
     }
-    color: var(--color-primary-800);
+    color: var(--color-primary-700);
   }
 
   &__item-checkbox {
@@ -57,9 +57,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--color-primary-100);
+    box-sizing: border-box;
 
     &--checked {
       background: var(--color-primary-500);
+      border: none;
 
       #{$host}__item-checkbox-icon {
         display: block;
