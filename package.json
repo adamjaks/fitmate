@@ -1,6 +1,5 @@
 {
   "name": "fitmate",
-  "homepage": "https://adamjaks.github.io/fitmate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -52,7 +51,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {},
+  "proxy": "https://fitmate.herokuapp.com/fitmate"
 }
