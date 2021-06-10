@@ -46,7 +46,7 @@ if (localStorage.jwtToken) {
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Router basename={"/fitmate"}>
+            <Router>
                 <div className="App">
                     <Route exact path="/login" component={LoginPage}/>
                     <Route exact path="/register" component={RegisterPage}/>
