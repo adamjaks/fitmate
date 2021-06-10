@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/fitmate/static/css/main.56021d86.chunk.css",
-    "main.js": "/fitmate/static/js/main.872397c9.chunk.js",
-    "main.js.map": "/fitmate/static/js/main.872397c9.chunk.js.map",
+    "main.js": "/fitmate/static/js/main.03de96ae.chunk.js",
+    "main.js.map": "/fitmate/static/js/main.03de96ae.chunk.js.map",
     "runtime-main.js": "/fitmate/static/js/runtime-main.a5a04e97.js",
     "runtime-main.js.map": "/fitmate/static/js/runtime-main.a5a04e97.js.map",
     "static/js/2.7b9da998.chunk.js": "/fitmate/static/js/2.7b9da998.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.a5a04e97.js",
     "static/js/2.7b9da998.chunk.js",
     "static/css/main.56021d86.chunk.css",
-    "static/js/main.872397c9.chunk.js"
+    "static/js/main.03de96ae.chunk.js"
   ]
 }
