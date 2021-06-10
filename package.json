@@ -11,7 +11,19 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "axios": "^0.21.1",
+    "classnames": "^2.3.1",
+    "gh-pages": "^3.2.0",
+    "is-empty": "^1.2.0",
+    "jwt-decode": "^3.1.2",
+    "node-sass": "^5.0.0",
+    "prop-types": "^15.7.2",
+    "react-icons": "^4.2.0",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,17 +53,6 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.21.1",
-    "classnames": "^2.3.1",
-    "gh-pages": "^3.2.0",
-    "is-empty": "^1.2.0",
-    "jwt-decode": "^3.1.2",
-    "node-sass": "^5.0.0",
-    "prop-types": "^15.7.2",
-    "react-icons": "^4.2.0",
-    "react-redux": "^7.2.3",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+
   }
 }
