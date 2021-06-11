@@ -8,6 +8,7 @@ module.exports = function validateAddCategoryInput(data) {
 
     if (Validator.isEmpty(data.name)) {
         errors.name = "Name is required";
+
     }
 
     return {
