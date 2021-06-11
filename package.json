@@ -52,6 +52,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
-  "proxy": "https://fitmate.herokuapp.com:80"
+  "devDependencies": {}
 }
