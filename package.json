@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "dev": "npm run start && cd fitmate_server && nodemon server.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postinstall":  "cd fitmate_server && npm install"
   },
   "eslintConfig": {
     "extends": [
