@@ -34,6 +34,6 @@ app.use("/api/exercises", exercises);
 app.use("/api/categories", categories);
 app.use("/api/training-days", trainingDays);
 
-const port = process.env.PORT || 5000;
+const port = 80;
 
 app.listen(port, () => console.log(`Server up and running on port ${port}!`));
