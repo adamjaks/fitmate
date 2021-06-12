@@ -32,7 +32,7 @@
     "dev": "npm run start && cd fitmate_server && nodemon server.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postinstall":  "cd fitmate_server && npm install"
+    "postinstall":  "cd fitmate_server && npm install && npm run start"
   },
   "eslintConfig": {
     "extends": [
