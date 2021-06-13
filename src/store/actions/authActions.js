@@ -9,7 +9,7 @@ import {
 
 export const registerUserAction = (userDataPayload, history) => dispatch => {
     axios
-        .post("/api/users/register", userDataPayload)
+        .post("https://fitmate-server.herokuapp.com/api/users/register", userDataPayload)
         .then(res => history.push("/login"))
         .catch(err =>
             dispatch({
@@ -21,7 +21,7 @@ export const registerUserAction = (userDataPayload, history) => dispatch => {
 
 export const loginUserAction = userDataPayload => dispatch => {
     axios
-        .post("/api/users/login", userDataPayload)
+        .post("https://fitmate-server.herokuapp.com/api/users/login", userDataPayload)
         .then(res => {
             const { token } = res.data;
             localStorage.setItem("jwtToken", token);

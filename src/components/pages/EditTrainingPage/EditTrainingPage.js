@@ -9,10 +9,10 @@ import InputControl from "../../controls/InputControl/InputControl";
 import classnames from "classnames";
 import ListControl from "../../controls/ListControl/ListControl";
 
-const EDIT_TRAINING_ROUTE = "/api/trainings/edit";
+const EDIT_TRAINING_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings/edit";
 
-const GET_EXERCISES_ROUTE = "/api/exercises";
-const GET_CATEGORIES_ROUTE = "/api/categories";
+const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
+const GET_CATEGORIES_ROUTE = "https://fitmate-server.herokuapp.com/api/categories";
 
 class EditTrainingPage extends React.Component {
 

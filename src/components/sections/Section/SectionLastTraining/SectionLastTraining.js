@@ -6,7 +6,7 @@ import { FaRegClock } from "react-icons/fa";
 import { FaRunning } from 'react-icons/fa';
 import axios from "axios";
 
-const GET_LAST_TRAINING_PATH = "/api/training-days/last";
+const GET_LAST_TRAINING_PATH = "https://fitmate-server.herokuapp.com/api/training-days/last";
 
 class SectionLastTraining extends React.Component {
 

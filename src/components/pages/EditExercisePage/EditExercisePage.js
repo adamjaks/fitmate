@@ -8,8 +8,8 @@ import classnames from "classnames";
 import MultipleChoiceControl from "../../controls/MultipleChoiceControl/MultipleChoiceControl";
 import TextareaControl from "../../controls/TextareaControl/TextareaControl";
 
-const EDIT_EXERCISE_ROUTE = "/api/exercises/edit";
-const GET_CATEGORIES_ROUTE = "/api/categories";
+const EDIT_EXERCISE_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises/edit";
+const GET_CATEGORIES_ROUTE = "https://fitmate-server.herokuapp.com/api/categories";
 
 class EditExercisePage extends React.Component {
 

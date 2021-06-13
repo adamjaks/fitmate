@@ -7,8 +7,8 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import InputControl from "../../controls/InputControl/InputControl";
 
-const GET_TRAININGS_ROUTE = "/api/trainings";
-const GET_EXERCISES_ROUTE = "/api/exercises";
+const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
+const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
 
 class TrainingsPage extends React.Component {
 

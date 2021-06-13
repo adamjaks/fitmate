@@ -6,9 +6,9 @@ import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
 import ListControl from "../../controls/ListControl/ListControl";
 
-const GET_EXERCISE_DETAILS_ROUTE = "/api/exercises/details";
-const GET_CATEGORIES_ROUTE = "/api/categories";
-const DELETE_EXERCISE_ROUTE = "/api/exercises/delete";
+const GET_EXERCISE_DETAILS_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises/details";
+const GET_CATEGORIES_ROUTE = "https://fitmate-server.herokuapp.com/api/categories";
+const DELETE_EXERCISE_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises/delete";
 
 class ExerciseDetailsPage extends React.Component {
 

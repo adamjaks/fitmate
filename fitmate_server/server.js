@@ -28,11 +28,11 @@ app.use(passport.initialize());
 
 require("./config/passport")(passport);
 
-app.use("/api/users", users);
-app.use("/api/trainings", trainings);
-app.use("/api/exercises", exercises);
-app.use("/api/categories", categories);
-app.use("/api/training-days", trainingDays);
+app.use("https://fitmate-server.herokuapp.com/api/users", users);
+app.use("https://fitmate-server.herokuapp.com/api/trainings", trainings);
+app.use("https://fitmate-server.herokuapp.com/api/exercises", exercises);
+app.use("https://fitmate-server.herokuapp.com/api/categories", categories);
+app.use("https://fitmate-server.herokuapp.com/api/training-days", trainingDays);
 
 const port = process.env.PORT || 5000;
 

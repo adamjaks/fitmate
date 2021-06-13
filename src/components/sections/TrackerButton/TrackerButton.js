@@ -3,7 +3,7 @@ import './TrackerButton.scss';
 import { FaPlay } from "react-icons/fa";
 import axios from "axios";
 
-const GET_TRAININGS_ROUTE = "/api/trainings";
+const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
 
 class TrackerButton extends React.Component {
     constructor(props) {
