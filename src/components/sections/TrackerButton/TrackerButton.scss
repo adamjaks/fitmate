@@ -20,8 +20,10 @@
     background: transparent;
     border: none;
     color: var(--color-primary-100);
-    margin: 0;
-    padding: 0;
+    margin: $DEFAULT_MARGIN_XS 0 0;
+    border-bottom: 1px solid var(--color-primary-300);
+    padding: $DEFAULT_PADDING_XXS;
+    border-radius: $DEFAULT_BORDER_RADIUS_S;
     font: {
       size: $DEFAULT_FONT_SIZE_S;
     }

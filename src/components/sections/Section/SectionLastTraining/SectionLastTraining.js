@@ -18,8 +18,6 @@ class SectionLastTraining extends React.Component {
     }
 
     componentDidMount() {
-        // todo: rewrite date formatting
-
         axios.get(`${GET_LAST_TRAINING_PATH}`).then(res => {
             this.setState({lastTraining: res.data});
         }).catch(err => {
@@ -43,14 +41,6 @@ class SectionLastTraining extends React.Component {
     render() {
         return (
             <div className="SectionLastTraining">
-                {/*<div className={"SectionLastTraining__param SectionLastTraining__param--localization"}>*/}
-                {/*    <div className={"SectionLastTraining__param-icon"}>*/}
-                {/*        <FaMapMarkerAlt/>*/}
-                {/*    </div>*/}
-                {/*    <div className={"SectionLastTraining__param-label"}>*/}
-                {/*        FitFabric 1.0, Kilińskiego*/}
-                {/*    </div>*/}
-                {/*</div>*/}
                 <div className={"SectionLastTraining__param"}>
                     <div className={"SectionLastTraining__param-icon"}>
                         <FaBurn/>
@@ -73,8 +63,10 @@ class SectionLastTraining extends React.Component {
                     </div>
                     <div className={"SectionLastTraining__param-label"}>
                         { new Date(this.state.lastTraining.date).getDate() }
-                        .
+                        /
                         { new Date(this.state.lastTraining.date).getMonth() + 1 }
+                        /
+                        { new Date(this.state.lastTraining.date).getFullYear() }
                     </div>
                 </div>
                 <div className={"SectionLastTraining__param"}>
