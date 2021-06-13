@@ -19,11 +19,13 @@ class TrackerButton extends React.Component {
 
     componentDidMount() {
         this._fetchTrainings();
+
     }
 
     _fetchTrainings() {
         axios.get(GET_TRAININGS_ROUTE).then(res => {
             this.setState(({trainings: res.data}))
+            this.setState({selectedTraining: res.data[0]._id});
         }).catch(err => {
             console.log(err);
         });
