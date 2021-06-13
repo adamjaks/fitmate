@@ -8,7 +8,7 @@ import { BiDumbbell } from 'react-icons/bi';
 import classnames from "classnames";
 import axios from "axios";
 
-const ADD_TRAINING_DAY_ROUTE = "api/training-days/add";
+const ADD_TRAINING_DAY_ROUTE = "https://fitmate-server.herokuapp.com/api/training-days/add";
 
 class TrackerTrainingPage extends React.Component {
     constructor(props) {

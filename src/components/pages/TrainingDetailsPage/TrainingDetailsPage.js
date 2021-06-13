@@ -6,7 +6,7 @@ import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
 import { BiDumbbell } from "react-icons/bi";
 
-const GET_TRAINING_DETAILS_ROUTE = "/api/trainings/details";
+const GET_TRAINING_DETAILS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings/details";
 const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises/";
 const DELETE_TRAINING_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings/delete";
 

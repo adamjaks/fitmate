@@ -7,8 +7,8 @@ import InputControl from "../../controls/InputControl/InputControl";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import SelectControl from "../../controls/SelectControl/SelectControl";
 
-const GET_EXERCISE_DETAILS_ROUTE = "/api/exercises/details";
-const GET_TRAINING_DETAILS_ROUTE = "/api/trainings/details";
+const GET_EXERCISE_DETAILS_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises/details";
+const GET_TRAINING_DETAILS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings/details";
 
 const SERIES_TO_CHOOSE = [
     {
