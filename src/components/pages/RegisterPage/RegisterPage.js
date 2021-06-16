@@ -66,41 +66,47 @@ class RegisterPage extends React.Component {
                     <h3 className={"subtitle"}>Rejestracja</h3>
                 </div>
                 <form className={"RegisterPage__form"} onSubmit={this._onSubmit.bind(this)}>
+                    <div className={"LoginPage__alert"}>
+                        { errors.name }
+                    </div>
                     <InputControl placeholder={"Nazwa użytkownika"}
                                   value={this.state.name}
                                   error={errors.name}
                                   id={"name"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.name
-                                  })}
+                                  mode={errors.name ? "danger" : ""}
                     />
+                    <div className={"LoginPage__alert"}>
+                        { errors.email }
+                    </div>
                     <InputControl placeholder={"Adres e-mail"}
                                   value={this.state.email}
                                   error={errors.email}
                                   id={"email"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.email
-                                  })}
+                                  mode={errors.email ? "danger" : ""}
                     />
+                    <div className={"LoginPage__alert"}>
+                        { errors.password }
+                        { errors.passwordincorrect }
+                    </div>
                     <InputControl type={"password"}
                                   placeholder={"Hasło"}
                                   value={this.state.password}
                                   id={"password"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.password || errors.passwordincorrect
-                                  })}
+                                  mode={errors.password || errors.passwordincorrect ? "danger" : ""}
                     />
+                    <div className={"LoginPage__alert"}>
+                        { errors.password2 }
+                        { errors.passwordincorrect }
+                    </div>
                     <InputControl type={"password"}
                                   placeholder={"Hasło ponownie"}
                                   value={this.state.password2}
                                   id={"password2"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.password2 || errors.passwordincorrect
-                                  })}
+                                  mode={errors.password2 || errors.passwordincorrect ? "danger" : ""}
                     />
                     <ButtonControl value={"Utwórz konto"}/>
                 </form>

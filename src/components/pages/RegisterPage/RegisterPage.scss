@@ -36,4 +36,8 @@
   &__link {
     margin-top: $DEFAULT_MARGIN_M;
   }
+
+  &__alert {
+    color: var(--color-danger-500);
+  }
 }
