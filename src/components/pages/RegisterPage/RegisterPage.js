@@ -66,7 +66,7 @@ class RegisterPage extends React.Component {
                     <h3 className={"subtitle"}>Rejestracja</h3>
                 </div>
                 <form className={"RegisterPage__form"} onSubmit={this._onSubmit.bind(this)}>
-                    <InputControl placeholder={"Imię i nazwisko"}
+                    <InputControl placeholder={"Nazwa użytkownika"}
                                   value={this.state.name}
                                   error={errors.name}
                                   id={"name"}

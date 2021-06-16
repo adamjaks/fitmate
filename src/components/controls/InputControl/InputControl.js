@@ -27,7 +27,7 @@ class InputControl extends React.Component {
     render() {
         return (
             <div className={"InputControl"}>
-                <input className={"InputControl__input"}
+                <input className={`InputControl__input InputControl__input--${this.props.mode}`}
                        type={this.props.type}
                        placeholder={this.props.placeholder}
                        onChange={this.props.onChange}

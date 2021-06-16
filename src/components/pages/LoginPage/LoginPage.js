@@ -52,7 +52,7 @@ class LoginPage extends React.Component {
 
     render() {
         const { errors } = this.state;
-
+        console.log(errors);
         return <div className="LoginPage">
             <div className={"LoginPage__content"}>
                 <div className={"LoginPage__header"}>
@@ -60,23 +60,26 @@ class LoginPage extends React.Component {
                     <h3 className={"subtitle"}>Logowanie</h3>
                 </div>
                 <form className={"LoginPage__form"} onSubmit={this._onSubmit.bind(this)}>
+                    <div className={"LoginPage__alert"}>
+                        { errors.email }
+                    </div>
                     <InputControl placeholder={"Email"}
                                   value={this.state.email}
-                                  error={errors.name}
+                                  error={errors.email}
                                   id={"email"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.name
-                                  })}
+                                  mode={errors.email ? "danger" : ""}
                     />
+                    <div className={"LoginPage__alert"}>
+                        { errors.password }
+                        { errors.passwordincorrect }
+                    </div>
                     <InputControl type={"password"}
                                   placeholder={"Hasło"}
                                   value={this.state.password}
                                   id={"password"}
                                   onChange={this._onChange.bind(this)}
-                                  className={classnames("", {
-                                      invalid: errors.password || errors.passwordincorrect
-                                  })}
+                                  mode={errors.password || errors.passwordincorrect ? "danger" : ""}
                     />
                     <ButtonControl value={"Zaloguj"}/>
                 </form>

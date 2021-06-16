@@ -9,6 +9,10 @@
         @include mixin-input;
         width: 100%;
         text-align: center;
+
+        &--danger {
+            background: var(--color-danger-100);
+        }
     }
 
     &__icon {

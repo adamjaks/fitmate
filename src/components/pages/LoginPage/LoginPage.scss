@@ -36,4 +36,16 @@
   &__link {
     margin-top: $DEFAULT_MARGIN_M;
   }
+
+  &__form-item {
+    display: none;
+    &#{&}--invalid {
+      background: var(--color-danger-100);
+      border: 1px solid var(--color-danger-500);
+    }
+  }
+
+  &__alert {
+    color: var(--color-danger-500);
+  }
 }
