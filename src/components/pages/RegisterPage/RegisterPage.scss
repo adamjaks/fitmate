@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30%;
+  margin-top: auto;
+  margin-bottom: auto;
 
   &__content {
     width: 90%;
@@ -39,5 +40,6 @@
 
   &__alert {
     color: var(--color-danger-500);
+    font-size: $DEFAULT_FONT_SIZE_S;
   }
 }

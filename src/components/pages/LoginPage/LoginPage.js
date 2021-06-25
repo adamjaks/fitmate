@@ -52,7 +52,7 @@ class LoginPage extends React.Component {
 
     render() {
         const { errors } = this.state;
-        console.log(errors);
+
         return <div className="LoginPage">
             <div className={"LoginPage__content"}>
                 <div className={"LoginPage__header"}>

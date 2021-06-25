@@ -86,7 +86,7 @@ class RegisterPage extends React.Component {
                                   onChange={this._onChange.bind(this)}
                                   mode={errors.email ? "danger" : ""}
                     />
-                    <div className={"LoginPage__alert"}>
+                    <div className={"RegisterPage__alert"}>
                         { errors.password }
                         { errors.passwordincorrect }
                     </div>

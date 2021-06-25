@@ -5,7 +5,6 @@ import SectionButton from "../../sections/SectionButton/SectionButton";
 import SectionLastTraining from "../../sections/Section/SectionLastTraining/SectionLastTraining";
 import Header from "../../sections/Header/Header";
 import TrackerButton from "../../sections/TrackerButton/TrackerButton";
-import {Link} from "react-router-dom";
 
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
@@ -20,8 +19,6 @@ class Main extends React.Component {
         super(props);
 
         this._onSectionClickBind = this._onSectionClick.bind(this);
-        this._onLogoutClickBind = this._onLogoutClick.bind(this);
-        this._onTrackerButtonClickBind = this._onTrackerButtonClick.bind(this);
     }
 
     _onLogoutClick = e => {
@@ -66,11 +63,11 @@ class Main extends React.Component {
                                brief={"Ostatni trening: 23/04/2021"}
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
-                <SectionButton id={SECTION_BUTTONS.PROGRESS}
-                               title={"Moje postępy"}
-                               brief={"2 treningi w ciągu ostatniego tygodnia"}
-                               icon={SECTION_BUTTONS.PROGRESS}
-                               onClick={this._onSectionClickBind}/>
+                {/*<SectionButton id={SECTION_BUTTONS.PROGRESS}*/}
+                {/*               title={"Moje postępy"}*/}
+                {/*               brief={"2 treningi w ciągu ostatniego tygodnia"}*/}
+                {/*               icon={SECTION_BUTTONS.PROGRESS}*/}
+                {/*               onClick={this._onSectionClickBind}/>*/}
                 <SectionButton id={SECTION_BUTTONS.EXERCISES}
                                title={"Atlas ćwiczeń"}
                                brief={"Ostatnio dodane: wykroki"}
