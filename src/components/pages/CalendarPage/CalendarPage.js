@@ -38,7 +38,9 @@ class CalendarPage extends React.Component {
             trainingDays: [],
             pickedTraining: {}
         };
+    }
 
+    componentDidMount() {
         this.fetchTrainingDays();
     }
 
@@ -62,7 +64,7 @@ class CalendarPage extends React.Component {
         });
 
         this.setState({
-           pickedTraining: trainingsInDay[0]
+           pickedTraining: trainingsInDay[0] || {}
         });
     }
 
@@ -182,26 +184,33 @@ class CalendarPage extends React.Component {
                     {this.renderDays()}
                     {this.renderCells()}
                 </div>
-                <div className={"CalendarPage__training-info"}>
-                    <div className={"CalendarPage__training-info-icon"}>
-                        <FaRunning/>
+                { Object.keys(this.state.pickedTraining).length === 0 &&
+                    <div className={"CalendarPage__training-info"}>
+                        Wybierz konkretny dzień aby zobaczyć szczegóły treningu.
                     </div>
-                    <div>
-                        <div className={"CalendarPage__training-info-row"}>
-                            <div className={"CalendarPage__training-info-title"}>
-                                { this.state.pickedTraining?.trainingName }
+                }
+                { Object.keys(this.state.pickedTraining).length > 0 &&
+                    <div className={"CalendarPage__training-info"}>
+                        <div className={"CalendarPage__training-info-icon"}>
+                            <FaRunning/>
+                        </div>
+                        <div>
+                            <div className={"CalendarPage__training-info-row"}>
+                                <div className={"CalendarPage__training-info-title"}>
+                                    { this.state.pickedTraining?.trainingName }
+                                </div>
+                            </div>
+                            <div className={"CalendarPage__training-info-row"}>
+                                <div className={"CalendarPage__training-info-item"}>
+                                    2 dni temu
+                                </div>
+                                <div className={"CalendarPage__training-info-item"}>
+                                    <FaStopwatch/> <span>58:02</span>
+                                </div>
                             </div>
                         </div>
-                        <div className={"CalendarPage__training-info-row"}>
-                            <div className={"CalendarPage__training-info-item"}>
-                                2 dni temu
-                            </div>
-                            <div className={"CalendarPage__training-info-item"}>
-                                <FaStopwatch/> <span>58:02</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                }
             </div>
         )
     }

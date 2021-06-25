@@ -5,7 +5,6 @@ import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUserAction } from "../../../store/actions/authActions";
-import classnames from "classnames";
 import { Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
