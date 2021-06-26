@@ -6,8 +6,7 @@ import SectionLastTraining from "../../sections/Section/SectionLastTraining/Sect
 import Header from "../../sections/Header/Header";
 import TrackerButton from "../../sections/TrackerButton/TrackerButton";
 import axios from "axios";
-import format from "date-fns/format";
-import parseISO from "date-fns/parseISO";
+import {connect} from "react-redux";
 
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
@@ -16,7 +15,6 @@ const SECTION_BUTTONS = {
     TRAININGS: "trainings",
 }
 
-const GET_LAST_TRAINING_PATH = "https://fitmate-server.herokuapp.com/api/training-days/last";
 const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
 const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
 
@@ -36,17 +34,8 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchLastTraining();
         this.fetchExercises();
         this.fetchTrainings();
-    }
-
-    fetchLastTraining() {
-        axios.get(`${GET_LAST_TRAINING_PATH}`).then(res => {
-            this.setState({lastTraining: res.data});
-        }).catch(err => {
-            console.log(err);
-        });
     }
 
     fetchExercises() {
@@ -59,7 +48,7 @@ class Main extends React.Component {
     }
 
     fetchTrainings() {
-        axios.get(GET_TRAININGS_ROUTE).then(res => {
+        axios.get(`${GET_TRAININGS_ROUTE}/${this.props.auth.user.id}`).then(res => {
             const trainings = res.data.map(training => (training.name));
             this.setState({trainings: trainings.join(", ")});
         }).catch(err => {
@@ -92,9 +81,11 @@ class Main extends React.Component {
     }
 
     _onTrackerButtonClick(selectedTraining) {
-        this.props.history.push("/tracker-config", {
-            selectedTraining
-        });
+        if (selectedTraining) {
+            this.props.history.push("/tracker-config", {
+                selectedTraining
+            });
+        }
     }
 
     render() {
@@ -132,4 +123,8 @@ class Main extends React.Component {
 
 Main.propTypes = {}
 
-export default Main;
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps)(Main);

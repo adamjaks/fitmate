@@ -7,6 +7,7 @@ import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import { BiDumbbell } from 'react-icons/bi';
 import classnames from "classnames";
 import axios from "axios";
+import {connect} from "react-redux";
 
 const ADD_TRAINING_DAY_ROUTE = "https://fitmate-server.herokuapp.com/api/training-days/add";
 
@@ -152,7 +153,7 @@ class TrackerTrainingPage extends React.Component {
 
     _onEndButtonClick() {
         const newTrainingDayPayload = {
-            authorId: '1',
+            authorId: this.props.auth.user.id,
             caloriesBurned: this.state.burnedCalories,
             duration: this.state.timerTrainingValue,
             trainingName: this.props.location.state.trainingName
@@ -286,4 +287,9 @@ TrackerTrainingPage.propTypes = {};
 
 TrackerTrainingPage.defaultProps = {};
 
-export default TrackerTrainingPage;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps)(TrackerTrainingPage);

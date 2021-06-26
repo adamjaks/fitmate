@@ -5,6 +5,7 @@ import "./AddTrainingPage.scss";
 import Header from "../../sections/Header/Header";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
+import { connect } from "react-redux";
 import InputControl from "../../controls/InputControl/InputControl";
 import classnames from "classnames";
 import ListControl from "../../controls/ListControl/ListControl";
@@ -13,6 +14,7 @@ const ADD_TRAINING_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings/a
 
 const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
 const GET_CATEGORIES_ROUTE = "https://fitmate-server.herokuapp.com/api/categories";
+
 
 class AddTrainingPage extends React.Component {
 
@@ -79,10 +81,9 @@ class AddTrainingPage extends React.Component {
 
     _onSubmit(event) {
         event.preventDefault();
-
         const newTrainingPayload = {
             name: this.state.name,
-            authorId: "1",
+            authorId: this.props.auth.user.id,
             exercisesIds: this.state.pickedExercisesFromList,
         };
 
@@ -127,4 +128,9 @@ AddTrainingPage.propTypes = {};
 
 AddTrainingPage.defaultProps = {};
 
-export default AddTrainingPage;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps)(AddTrainingPage)

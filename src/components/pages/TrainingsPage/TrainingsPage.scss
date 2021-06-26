@@ -1,1 +1,10 @@
-.TrainingsPage {}
+@import "../../../scss/global";
+
+.TrainingsPage {
+  color: var(--color-primary-800);
+
+  &__warning {
+    font-size: $DEFAULT_FONT_SIZE_S;
+    margin-bottom: $DEFAULT_MARGIN_S;
+  }
+}

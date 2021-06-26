@@ -20,6 +20,7 @@ import { FaAngleLeft } from 'react-icons/fa';
 import { FaStopwatch } from "react-icons/fa";
 
 import axios from "axios";
+import {connect} from "react-redux";
 
 const GET_TRAINING_DAYS_PATH = "https://fitmate-server.herokuapp.com/api/training-days";
 
@@ -45,7 +46,7 @@ class CalendarPage extends React.Component {
     }
 
     fetchTrainingDays() {
-        axios.get(`${GET_TRAINING_DAYS_PATH}`).then(res => {
+        axios.get(`${GET_TRAINING_DAYS_PATH}/${this.props.auth.user.id}`).then(res => {
             this.setState({
                 trainingDays: res.data
             });
@@ -216,4 +217,9 @@ class CalendarPage extends React.Component {
     }
 }
 
-export default CalendarPage;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps)(CalendarPage);

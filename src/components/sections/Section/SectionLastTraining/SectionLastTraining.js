@@ -5,6 +5,7 @@ import { FaStopwatch } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { FaRunning } from 'react-icons/fa';
 import axios from "axios";
+import {connect} from "react-redux";
 
 const GET_LAST_TRAINING_PATH = "https://fitmate-server.herokuapp.com/api/training-days/last";
 
@@ -18,7 +19,7 @@ class SectionLastTraining extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`${GET_LAST_TRAINING_PATH}`).then(res => {
+        axios.get(`${GET_LAST_TRAINING_PATH}/${this.props.auth.user.id}`).then(res => {
             this.setState({lastTraining: res.data});
         }).catch(err => {
             console.log(err);
@@ -41,42 +42,53 @@ class SectionLastTraining extends React.Component {
     render() {
         return (
             <div className="SectionLastTraining">
-                <div className={"SectionLastTraining__param"}>
-                    <div className={"SectionLastTraining__param-icon"}>
-                        <FaBurn/>
-                    </div>
-                    <div className={"SectionLastTraining__param-label"}>
-                        { this.state.lastTraining.caloriesBurned } kcal
-                    </div>
-                </div>
-                <div className={"SectionLastTraining__param"}>
-                    <div className={"SectionLastTraining__param-icon"}>
-                        <FaStopwatch/>
-                    </div>
-                    <div className={"SectionLastTraining__param-label"}>
-                        { this._formatTime(this.state.lastTraining.duration) }
-                    </div>
-                </div>
-                <div className={"SectionLastTraining__param"}>
-                    <div className={"SectionLastTraining__param-icon"}>
-                        <FaRegClock/>
-                    </div>
-                    <div className={"SectionLastTraining__param-label"}>
-                        { new Date(this.state.lastTraining.date).getDate() }
-                        /
-                        { new Date(this.state.lastTraining.date).getMonth() + 1 }
-                        /
-                        { new Date(this.state.lastTraining.date).getFullYear() }
-                    </div>
-                </div>
-                <div className={"SectionLastTraining__param"}>
-                    <div className={"SectionLastTraining__param-icon"}>
-                        <FaRunning/>
-                    </div>
-                    <div className={"SectionLastTraining__param-label"}>
-                        { this.state.lastTraining.trainingName }
-                    </div>
-                </div>
+                { this.state.lastTraining &&
+                    <React.Fragment>
+                        <div className={"SectionLastTraining__param"}>
+                            <div className={"SectionLastTraining__param-icon"}>
+                                <FaBurn/>
+                            </div>
+                            <div className={"SectionLastTraining__param-label"}>
+                                { this.state.lastTraining.caloriesBurned } kcal
+                            </div>
+                        </div>
+                        <div className={"SectionLastTraining__param"}>
+                            <div className={"SectionLastTraining__param-icon"}>
+                                <FaStopwatch/>
+                            </div>
+                            <div className={"SectionLastTraining__param-label"}>
+                                { this._formatTime(this.state.lastTraining.duration) }
+                            </div>
+                        </div>
+                        <div className={"SectionLastTraining__param"}>
+                            <div className={"SectionLastTraining__param-icon"}>
+                                <FaRegClock/>
+                            </div>
+                            <div className={"SectionLastTraining__param-label"}>
+                                { new Date(this.state.lastTraining.date).getDate() }
+                                /
+                                { new Date(this.state.lastTraining.date).getMonth() + 1 }
+                                /
+                                { new Date(this.state.lastTraining.date).getFullYear() }
+                            </div>
+                        </div>
+                        <div className={"SectionLastTraining__param"}>
+                            <div className={"SectionLastTraining__param-icon"}>
+                                <FaRunning/>
+                            </div>
+                            <div className={"SectionLastTraining__param-label"}>
+                                { this.state.lastTraining.trainingName }
+                            </div>
+                        </div>
+                    </React.Fragment>
+                }
+                {
+                    !this.state.lastTraining &&
+                    (
+                        <div>Nie ukończyłeś jeszcze żadnego treningu.</div>
+                    )
+                }
+
             </div>
         )
     }
@@ -86,4 +98,9 @@ SectionLastTraining.propTypes = {};
 
 SectionLastTraining.defaultProps = {};
 
-export default SectionLastTraining;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps)(SectionLastTraining);

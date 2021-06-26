@@ -5,6 +5,7 @@ import Header from "../../sections/Header/Header";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
 const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
@@ -32,7 +33,7 @@ class TrainingsPage extends React.Component {
     }
 
     _fetchTrainings() {
-        axios.get(GET_TRAININGS_ROUTE).then(res => {
+        axios.get(`${GET_TRAININGS_ROUTE}/${this.props.auth.user.id}`).then(res => {
             this.setState(({trainings: res.data}))
         }).catch(err => {
             console.log(err);
@@ -62,6 +63,12 @@ class TrainingsPage extends React.Component {
                 <h2 className={"title"}>Treningi</h2>
                 {/*<InputControl placeholder="Nazwa treningu" type="search"/>*/}
                 {
+                    this.state.trainings.length === 0 &&
+                    (
+                        <div className={"TrainingsPage__warning"}>Nie utworzyłeś jeszcze żadnego treningu.</div>
+                    )
+                }
+                {
                     this.state.trainings.map((training, index) => {
                         return <SectionButton title={training.name}
                                           brief={this._getBriefExercises(training.exercisesIds)}
@@ -84,4 +91,9 @@ TrainingsPage.propTypes = {};
 
 TrainingsPage.defaultProps = {};
 
-export default TrainingsPage;
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps)(TrainingsPage);

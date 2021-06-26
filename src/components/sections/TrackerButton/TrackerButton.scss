@@ -42,4 +42,19 @@
     justify-content: center;
     color: var(--color-primary-100);
   }
+
+  &__warning {
+    color: var(--color-primary-100);
+    font-size: $DEFAULT_FONT_SIZE_S;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    &-icon {
+      width: $DEFAULT_FONT_SIZE_M;
+      height: $DEFAULT_FONT_SIZE_M;
+      margin-right: $DEFAULT_MARGIN_XS;
+    }
+  }
+
 }
