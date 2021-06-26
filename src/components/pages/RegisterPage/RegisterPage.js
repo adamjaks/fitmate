@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { Link, withRouter } from "react-router-dom";
 
 import './RegisterPage.scss';
@@ -11,8 +10,9 @@ import InputControl from "../../controls/InputControl/InputControl";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 
 class RegisterPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             name: "",
             email: "",

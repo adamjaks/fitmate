@@ -19,6 +19,7 @@ class Main extends React.Component {
         super(props);
 
         this._onSectionClickBind = this._onSectionClick.bind(this);
+        this._onTrackerButtonClickBind = this._onTrackerButtonClick.bind(this);
     }
 
     _onLogoutClick = e => {

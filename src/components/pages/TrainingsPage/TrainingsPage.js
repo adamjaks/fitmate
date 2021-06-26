@@ -5,7 +5,6 @@ import Header from "../../sections/Header/Header";
 import ButtonControl from "../../controls/ButtonControl/ButtonControl";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import InputControl from "../../controls/InputControl/InputControl";
 
 const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
 const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
