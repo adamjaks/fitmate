@@ -5,6 +5,9 @@ import SectionButton from "../../sections/SectionButton/SectionButton";
 import SectionLastTraining from "../../sections/Section/SectionLastTraining/SectionLastTraining";
 import Header from "../../sections/Header/Header";
 import TrackerButton from "../../sections/TrackerButton/TrackerButton";
+import axios from "axios";
+import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
 
 const SECTION_BUTTONS = {
     CALENDAR: "calendar",
@@ -13,6 +16,10 @@ const SECTION_BUTTONS = {
     TRAININGS: "trainings",
 }
 
+const GET_LAST_TRAINING_PATH = "https://fitmate-server.herokuapp.com/api/training-days/last";
+const GET_EXERCISES_ROUTE = "https://fitmate-server.herokuapp.com/api/exercises";
+const GET_TRAININGS_ROUTE = "https://fitmate-server.herokuapp.com/api/trainings";
+
 class Main extends React.Component {
 
     constructor(props) {
@@ -20,6 +27,44 @@ class Main extends React.Component {
 
         this._onSectionClickBind = this._onSectionClick.bind(this);
         this._onTrackerButtonClickBind = this._onTrackerButtonClick.bind(this);
+
+        this.state = {
+            lastTraining: {},
+            exercises: "",
+            trainings: ""
+        }
+    }
+
+    componentDidMount() {
+        this.fetchLastTraining();
+        this.fetchExercises();
+        this.fetchTrainings();
+    }
+
+    fetchLastTraining() {
+        axios.get(`${GET_LAST_TRAINING_PATH}`).then(res => {
+            this.setState({lastTraining: res.data});
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    fetchExercises() {
+        axios.get(GET_EXERCISES_ROUTE).then(res => {
+            const exercises = res.data.map(exercise => (exercise.name));
+            this.setState({exercises: exercises.join(", ")});
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    fetchTrainings() {
+        axios.get(GET_TRAININGS_ROUTE).then(res => {
+            const trainings = res.data.map(training => (training.name));
+            this.setState({trainings: trainings.join(", ")});
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     _onLogoutClick = e => {
@@ -61,7 +106,7 @@ class Main extends React.Component {
                 </Section>
                 <SectionButton id={SECTION_BUTTONS.CALENDAR}
                                title={"Kalendarz"}
-                               brief={"Ostatni trening: 23/04/2021"}
+                               brief={"Treningów w tym tygodniu: 2"}
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 {/*<SectionButton id={SECTION_BUTTONS.PROGRESS}*/}
@@ -71,12 +116,12 @@ class Main extends React.Component {
                 {/*               onClick={this._onSectionClickBind}/>*/}
                 <SectionButton id={SECTION_BUTTONS.EXERCISES}
                                title={"Atlas ćwiczeń"}
-                               brief={"Ostatnio dodane: wykroki"}
+                               brief={`Ostatnio dodane: ${this.state.exercises}`}
                                icon={SECTION_BUTTONS.EXERCISES}
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
                                title={"Baza treningów"}
-                               brief={"Trening A,Trening B, FBW"}
+                               brief={this.state.trainings}
                                icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
                 <TrackerButton onClick={this._onTrackerButtonClickBind}/>
