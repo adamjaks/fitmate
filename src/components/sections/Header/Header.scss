@@ -13,6 +13,7 @@
   box-sizing: border-box;
   color: var(--color-primary-800);
   background: $COLOR_BACKGROUND;
+  z-index: 999;
 
   &__logo {
     font: {

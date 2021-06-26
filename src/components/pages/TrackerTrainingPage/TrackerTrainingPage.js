@@ -200,6 +200,11 @@ class TrackerTrainingPage extends React.Component {
 
                 </div>
                 <h2 className={"title"}>{this.state.inPauseState ? "Przerwa" : this._getActiveExercise()?.name}</h2>
+                { !this.state.inPauseState &&
+                    <div className={"TrackerTrainingPage__brief-info"}>
+                        { this._getActiveExercise()?.description }
+                    </div>
+                }
                 <div className={"TrackerTrainingPage__cards"}>
                     <div className={classnames(
                         "TrackerTrainingPage__card",

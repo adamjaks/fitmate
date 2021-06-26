@@ -5,6 +5,12 @@
   padding: $DEFAULT_PADDING_S;
   color: var(--color-primary-800);
 
+  &__brief-info {
+    font-size: $DEFAULT_FONT_SIZE_S;
+    padding: $DEFAULT_PADDING_S $DEFAULT_PADDING_XS;
+    color: var(--color-primary-700);
+  }
+
   &__cards {
     display: flex;
     align-items: center;

@@ -65,7 +65,8 @@ class TrackerConfigPage extends React.Component {
         this.state.exercises.forEach((exercise, index) => {
             if (!exercisesWithValues[index]) {
                 exercisesWithValues[index] = {
-                    name: exercise.name
+                    name: exercise.name,
+                    description: exercise.description
                 }
             }
         });
@@ -99,6 +100,7 @@ class TrackerConfigPage extends React.Component {
             this.setState({
                 exercises: [...this.state.exercises, {
                     name: res.data.name,
+                    description: res.data.description,
                     id: res.data._id
                 }]
             });
