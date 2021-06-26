@@ -15,18 +15,14 @@ class ButtonControl extends React.Component {
 
     render() {
         return (
-            <button className={`ButtonControl ButtonControl--${this.props.type}`} onClick={this._onClickBind}>
-                { this.props.value }
+            <button className={`ButtonControl ButtonControl--${this.props.type || "primary"}`} onClick={this._onClickBind}>
+                { !this.props.loader && this.props.value }
+                { this.props.loader &&
+                    <div className={"ButtonControl__loader"} />
+                }
             </button>
         )
     }
 }
-
-
-ButtonControl.propTypes = {};
-
-ButtonControl.defaultProps = {
-    type: "primary",
-};
 
 export default ButtonControl;

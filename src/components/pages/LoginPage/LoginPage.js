@@ -13,7 +13,8 @@ class LoginPage extends React.Component {
         this.state = {
             email: "",
             password: "",
-            errors: {}
+            errors: {},
+            buttonLoader: false
         };
     }
 
@@ -38,15 +39,18 @@ class LoginPage extends React.Component {
         this.setState({ [event.target.id]: event.target.value });
     }
 
-    _onSubmit(event) {
+    async _onSubmit(event) {
         event.preventDefault();
+
+        this.setState({buttonLoader: true});
 
         const userDataPayload = {
             email: this.state.email,
             password: this.state.password
         };
 
-        this.props.loginUserAction(userDataPayload);
+        await this.props.loginUserAction(userDataPayload);
+        this.setState({buttonLoader: false});
     }
 
     render() {
@@ -80,7 +84,7 @@ class LoginPage extends React.Component {
                                   onChange={this._onChange.bind(this)}
                                   mode={errors.password || errors.passwordincorrect ? "danger" : ""}
                     />
-                    <ButtonControl value={"Zaloguj"}/>
+                    <ButtonControl value={"Zaloguj"} loader={this.state.buttonLoader}/>
                 </form>
                 <div className={"LoginPage__link"}>Nie masz konta?
                     <Link to={"/register"}><b> Zarejestruj się</b></Link>

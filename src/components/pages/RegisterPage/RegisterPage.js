@@ -18,7 +18,8 @@ class RegisterPage extends React.Component {
             email: "",
             password: "",
             password2: "",
-            errors: {}
+            errors: {},
+            buttonLoader: false
         };
     }
 
@@ -43,8 +44,10 @@ class RegisterPage extends React.Component {
         this.setState({ [event.target.id]: event.target.value });
     }
 
-    _onSubmit(event) {
+    async _onSubmit(event) {
         event.preventDefault();
+
+        this.setState({buttonLoader: true});
 
         const userDataPayload = {
             name: this.state.name,
@@ -53,7 +56,8 @@ class RegisterPage extends React.Component {
             password2: this.state.password2
         };
 
-        this.props.registerUserAction(userDataPayload, this.props.history);
+        await this.props.registerUserAction(userDataPayload, this.props.history);
+        this.setState({buttonLoader: false});
     }
 
     render() {
@@ -108,7 +112,7 @@ class RegisterPage extends React.Component {
                                   onChange={this._onChange.bind(this)}
                                   mode={errors.password2 || errors.passwordincorrect ? "danger" : ""}
                     />
-                    <ButtonControl value={"Utwórz konto"}/>
+                    <ButtonControl value={"Utwórz konto"} loader={this.state.buttonLoader}/>
                 </form>
                 <div className={"RegisterPage__link"}>Masz już konto?
                     <Link to={"/login"}> <b>Zaloguj się</b></Link>
