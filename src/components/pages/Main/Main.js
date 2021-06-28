@@ -97,7 +97,7 @@ class Main extends React.Component {
                 </Section>
                 <SectionButton id={SECTION_BUTTONS.CALENDAR}
                                title={"Kalendarz"}
-                               brief={"Treningów w tym tygodniu: 2"}
+                               brief={"Zobacz podsumowanie treningów"}
                                icon={SECTION_BUTTONS.CALENDAR}
                                onClick={this._onSectionClickBind}/>
                 {/*<SectionButton id={SECTION_BUTTONS.PROGRESS}*/}
@@ -112,7 +112,7 @@ class Main extends React.Component {
                                onClick={this._onSectionClickBind}/>
                 <SectionButton id={SECTION_BUTTONS.TRAININGS}
                                title={"Baza treningów"}
-                               brief={this.state.trainings}
+                               brief={"Treningi: " + this.state.trainings}
                                icon={SECTION_BUTTONS.TRAININGS}
                                onClick={this._onSectionClickBind}/>
                 <TrackerButton onClick={this._onTrackerButtonClickBind}/>
